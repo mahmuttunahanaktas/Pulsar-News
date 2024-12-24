@@ -16,7 +16,7 @@ function NewDetail() {
       .catch((error) => console.error("Haber yüklenirken bir sorun oluştu :/", error));    
   }, [uri]);
   if (!actualNew) {
-    return <p>actualNew yükleniyor...</p>;
+    return <p>actualNew yükleniyor....</p>;
   }
   else {
 
