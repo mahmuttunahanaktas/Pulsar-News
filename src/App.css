@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main_div {
+  margin: 0;
+  padding: 0;
+
+  justify-content: center;
+  /* Yatay ortalama */
+  align-items: center;
+  background-color: rgb(186, 217, 243);
+  height: auto;
+}
+
+.login-div {
+  padding: 10px;
+  border-radius: 20px;
+  background-color: white;
+  width: auto;
+  padding: 50px;
+
+}
+
+.input_div {
+  display: flex;
+  height: auto;
+  width: 100%;
+  text-align: left;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.input_text {
+  border-radius: 10px;
+  padding: 7px;
+  font-size: 1rem;
+  border: 2px solid gray;
+}
+
+.span_text {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.footerIconButton {
+  margin: 5px;
+  /* İkonlar arası boşluk */
+  font-size: 1.5rem;
+  /* İkon boyutu */
+  color: white;
+  border: none;
+  background-color: transparent;
+}
+
+.left-div {
+  height: auto;
+  width: 65%;
+}
+
+.topNewDiv {
+  display: flex;
+  padding: 10px;
+  border-bottom: 2px solid black;
+  margin-bottom: 30px;
+}
+
+.text-areas-div {
+  width: 40%;
+}
+
+.top_news_image {
+  width: 60%;
+}
+
+.top_new_title {
+  font-weight: bold;
+  font-size: 1.5rem;
+
+}
+
+.right-div {
+  margin-top: 10px;
+  width: 40%;
+  border-left: 2px solid gray;
+  border-top: 2px solid gray;
+
+}
+
+.text-areas-div {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.top_news_image {
+  cursor: pointer;
+}
+
+.text-areas-div:hover {
+  color: gray;
+
+}
+
+.container {
+  display: flex;
+}
+
+.mini-news-div {
+  display: flex;
+
+  border-bottom: 2px solid gray;
+  margin: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+
+}
+
+.mini-text-areas-div {
+  width: 70%;
+  cursor: pointer;
+
+}
+
+.mini_news_image {
+  width: 30%;
+  cursor: pointer;
+}
+
+.mini_news_title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.mini-text-areas-div:hover{
+  color: gray;
+}
+*{
+  font-family: 'Times New Roman', serif;
+}
+.mini_news_category{
+  color: gray;
+}
+.container-content{
+  border-top: 2px solid black;
+  margin-top: 5%;
+}

@@ -1,0 +1,32 @@
+.breaking-news-banner {
+    background: #9a0a0c;
+    color: white;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Yazının sınırları dışına taşmasını önler */
+    position: relative;
+  }
+  .breaking-news-text {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    white-space: nowrap; /* Yazının satır kırmasını engeller */
+    animation: slide 17s linear infinite; /* Animasyon 10 saniyede tamamlanacak ve tekrar edecek */
+  }
+  @keyframes slide {
+    0% {
+      transform: translateX(100%); /* Sağdan başlar */
+    }
+    50% {
+      transform: translateX(0); /* Ortaya gelir */
+    }
+    100% {
+      transform: translateX(-100%); /* Sola gider ve kaybolur */
+    }
+  }
+  
+  .icon {
+    margin-right: 10px;
+  }
