@@ -8,7 +8,7 @@ function TopNews() {
   const [error, setError] = useState(null);// api'da hata olursa göstertmek için.
   const API_URL = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=jragcoZD3twCzmu2uJV6ANvU8usEAyTx`;
   //Haberleri API ile çekiyoruz
-
+/*
   useEffect(() => {
     const fetchNews = async () => {
       try {
@@ -24,7 +24,7 @@ function TopNews() {
       }
     };
     fetchNews();
-  }, []);
+  }, []);*/
   if (loading) return <h1>Yükleniyor...</h1>
   if (error) return <p>HATA: {error}</p>
   return (
