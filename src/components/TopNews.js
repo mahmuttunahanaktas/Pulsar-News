@@ -6,7 +6,7 @@ function TopNews() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);// loading durumu için.
   const [error, setError] = useState(null);// api'da hata olursa göstertmek için.
-  const API_URL = `https://api.nytimes.com/svc/topstories/v2/arts.json?api-key=jragcoZD3twCzmu2uJV6ANvU8usEAyTx`;
+  const API_URL = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=jragcoZD3twCzmu2uJV6ANvU8usEAyTx`;
   //Haberleri API ile çekiyoruz
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function TopNews() {
         {
           news.map((item, index) => (
             <div
-              onClick={() => navigate(`/news/${encodeURIComponent(item.uri)}`)} // Dinamik yönlendirme
+              onClick={() => navigate(`/news/${encodeURIComponent(item.uri)}/nyt`)} // Kaynak parametresi ile dinamik yönlendirme
               className="topNewDiv" key={index}>
               <div className="text-areas-div">
                 <p className='top_new_title'>{item.title}</p>
@@ -42,7 +42,6 @@ function TopNews() {
               <img className='top_news_image'
                 src={item.multimedia[0].url}
                 alt={item.title}
-
               />
             </div>
           ))

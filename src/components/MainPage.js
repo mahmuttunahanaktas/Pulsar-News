@@ -3,30 +3,31 @@ import BreakingNews from './BreakingNews'
 import MyContext from '../context';
 import TopNews from './TopNews';
 import MiniNews from './MiniNews';
-
+import MainPageCategories from './MainPageCategories';
+import LastVideos from './LastVideos';
 
 
 function MainPage() {
-  
+
 
   return (
     <div>
       <BreakingNews />
-      <div className='container'>
+      <div className='container border-bottom'>
         <section className='left-div'>
           <TopNews></TopNews>
         </section>
         <section className='right-div'>
-              <MiniNews></MiniNews>
+          <MiniNews></MiniNews>
         </section>
-
-       
-
       </div>
+      <section className='categories-mainpage-div w-100 d-flex justify-content-center mt-5'>
+        <MainPageCategories></MainPageCategories>
+      </section>
+      <section className='latest-videos-section w-100 d-flex justify-content-center mt-5' style={{background:'black',color:'gray'}}>
+      <LastVideos></LastVideos>
 
-
-
-
+      </section>
     </div>
   );
 }

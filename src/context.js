@@ -11,6 +11,10 @@ export const MyProvider = ({ children }) => {
         const storedIsAdminLogged = localStorage.getItem('isAdminLogged');
         return storedIsAdminLogged ? JSON.parse(storedIsAdminLogged) : false;
     })
+    const handleGoToPageDetail=(new_link)=>{
+        window.open(new_link,"_blank");
+
+    };
     useEffect(() => {
         localStorage.setItem('isAdminLogged', JSON.stringify(isAdminLogged));
     }, [isAdminLogged]);
@@ -47,7 +51,7 @@ export const MyProvider = ({ children }) => {
     }
 
     return (
-        <MyContext.Provider value={{ isAdminLogged,setIsAdminLogged, login, breakingNew, setBreakingNew, adminButtonVisiblty, setAdminButtonVisibilty }}>
+        <MyContext.Provider value={{handleGoToPageDetail, isAdminLogged,setIsAdminLogged, login, breakingNew, setBreakingNew, adminButtonVisiblty, setAdminButtonVisibilty }}>
             {children}
 
         </MyContext.Provider>

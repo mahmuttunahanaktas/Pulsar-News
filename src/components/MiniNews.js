@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
-export default function MiniNews() {
+function MiniNews() {
+    const navigate = useNavigate();
     const [news, setNews] = useState([]);
     const [loading, setLoading] = useState(true);// loading durumu için.
     const [error, setError] = useState(null);// api'da hata olursa göstertmek için.
@@ -28,24 +30,23 @@ export default function MiniNews() {
     if (error) return <p>HATA: {error}</p>
     return (
         <div className='justify-contet-center'>
-            <h2 style={{borderBottom:'2px solid black',textAlign:'center',fontWeight:'bold',fontStyle:'italic'}}>Most Popular</h2>
+            <h2 style={{ borderBottom: '2px solid black', textAlign: 'center', fontWeight: 'bold' }}>Most Popular</h2>
             <ul>
                 {
                     news.map((item, index) => (
 
-                        <div className="mini-news-div" key={index}>
+                        <div key={index} onClick={() => navigate(`/news/${encodeURIComponent(item.uri)}/nyt`)} className="mini-news-div" style={{height:'20vh'}} >
                             <div className="mini-text-areas-div">
-                                <p className='mini_news_title'>{item.title}</p>
                                 <p className='mini_news_category'>{item.section}</p>
+                                <p className='mini_news_title m-1'>{item.title}</p>
+                                <p className='mini_news_category'>{item.published_date}</p>
                             </div>
                             {item.media && item.media[0] && item.media[0]["media-metadata"] && (
                                 <img className='mini_news_image'
                                     src={item.media[0]["media-metadata"][2].url}
                                     alt={item.title}
-
                                 />
                             )}
-
 
                         </div>
                     ))
@@ -55,4 +56,4 @@ export default function MiniNews() {
 
         </div>
     )
-}
+} export default MiniNews;

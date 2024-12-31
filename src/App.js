@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminPanel from './components/AdminPanel';
 import Footer from './components/Footer';
-import NewDetail from './components/NewDetail';
+import NewDetailPage from './components/NewDetailPage';
 
 function App() {
   return (
@@ -19,11 +19,10 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/adminpanel" element={<AdminPanel />} />
-          <Route path="/detailpage" element={<NewDetail />} />
-          <Route path="/news/:uri" element={<NewDetail/>}/>
+          <Route path="/detailpage" element={<NewDetailPage />} />
+          <Route path="/news/:uri/:source" element={<NewDetailPage/>}/>
         </Routes>
-      
-        <Footer /> {/* Footer'ı Routes'ın dışına koyun */}
+        <Footer /> 
       </Router>
     </MyProvider>
   );
