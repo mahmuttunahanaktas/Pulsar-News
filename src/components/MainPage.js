@@ -13,7 +13,7 @@ function MainPage() {
   return (
     <div>
       <BreakingNews />
-      <div className='container border-bottom'>
+      <div className='container border-bottom' style={{marginTop:'5%'}}>
         <section className='left-div'>
           <TopNews></TopNews>
         </section>
