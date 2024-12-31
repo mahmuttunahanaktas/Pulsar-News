@@ -32,13 +32,11 @@ function Navbar() {
 
   return (
     <div className='navbar-div d-flex justify-content-center w-100'>
-
-
-      <nav className="navbar border-bottom p-2 w-75">
-        <h1 onClick={handleMain} className="navbar-brand fs-1" style={{fontWeight:'800',cursor:'pointer'}}>Pulsar News</h1>
+      <nav className="navbar">
+        <h1 onClick={handleMain} className="brand" >Pulsar News</h1>
 
         <div>
-          <ul className='d-flex m-1 p-1'>
+          <ul className='navbar-ul'>
             <button className='navbar-items '>World</button>
             <button className='navbar-items '>Politics</button>
             <button className='navbar-items '>Science</button>
@@ -50,7 +48,7 @@ function Navbar() {
           </ul>
 
         </div>
-        <div className="d-flex align-items-center">
+        <div className="navbar-items-div d-flex align-items-center">
           <button onClick={handlePanel} className="btn btn-light border d-flex align-items-center me-2" style={{ visibility: adminButtonVisiblty }}>
             <MdAdminPanelSettings style={{ height: '1rem' }} />
             <p className="m-0">Admin Panel</p>

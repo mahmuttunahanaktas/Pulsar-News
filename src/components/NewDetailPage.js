@@ -17,8 +17,8 @@ function MostPopularDetail() {
     useEffect(() => {
         const MyApiKey = "jragcoZD3twCzmu2uJV6ANvU8usEAyTx";
         const apiUrl = source === 'nyt'
-        ? `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${MyApiKey}`
-        : `https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json?api-key=${MyApiKey}`;
+            ? `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${MyApiKey}`
+            : `https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json?api-key=${MyApiKey}`;
 
 
         fetch(apiUrl)
@@ -59,11 +59,11 @@ function MostPopularDetail() {
 
 
     return (
-        <div className='container w-60 d-flex'>
+        <div className='container container-detail'>
             <div className='container-content w-60' style={{ marginBottom: '50%' }}>
                 <h1 className='fs-1 fw-bold'>{actualNew.title}</h1>
                 <p className='mini_news_category'>
-                    /{actualNew.section.charAt(0).toUpperCase() + actualNew.section.slice(1)} / 
+                    /{actualNew.section.charAt(0).toUpperCase() + actualNew.section.slice(1)} /
                     {actualNew.subsection.charAt(0).toUpperCase() + actualNew.subsection.slice(1)}
                 </p>
                 <img style={{ width: '100%' }}
@@ -89,6 +89,6 @@ function MostPopularDetail() {
             </div>
             <CategoriesBar className='w-40'></CategoriesBar>
         </div>
-        
+
     );
 } export default MostPopularDetail;

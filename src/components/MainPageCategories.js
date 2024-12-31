@@ -71,7 +71,7 @@ function MainPageCategories() {
     return (
         <div style={{ width: '60%' }}>
             <div style={{ width: '100%', height: '10px', borderTop: '2px solid black', borderBottom: '2px solid black' }}></div>
-            <div className="d-flex flex-wrap justify-content-center">
+            <div className="main-page-categories">
                 {
                     categories.map((category,index) => (
                         <div key={index} className='categories-item'>

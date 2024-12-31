@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: 0.4s;
 }
 
 .main_div {
@@ -66,6 +67,7 @@
   padding: 10px;
   border-bottom: 2px solid black;
   margin-bottom: 30px;
+
 }
 
 .text-areas-div {
@@ -153,9 +155,13 @@
 
 }
 
+.navbar-ul {
+  display: flex;
+  align-items: center;
+}
+
 .custom-button-1 {
   padding: 10px;
-
   margin: 10px;
   color: black;
   border: 2px solid black;
@@ -223,6 +229,11 @@
   background-color: #f0efed;
 }
 
+.brand {
+  cursor: pointer;
+  font-weight: 800;
+}
+
 .categories-item {
   width: 23%;
   height: auto;
@@ -247,4 +258,139 @@
 
 .item-abstract:hover {
   color: gray;
+}
+
+.main-page-categories {
+  display: flex;
+  flex: wrap;
+  justify-content: center;
+
+}
+
+.navbar {
+  border-bottom: 1px solid gainsboro;
+  width: 75%;
+  padding: 2rem;
+
+
+
+}
+
+.container-detail {
+  display: flex;
+  width: 60%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Telefon için stil */
+@media (max-width: 480px) {
+  .header {
+    text-align: center;
+  }
+
+  nav {
+    flex-direction: column;
+
+
+  }
+
+  .navbar-ul {
+    visibility: collapse;
+
+  }
+
+  .navbar {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .navbar-div {
+    width: 100%;
+
+  }
+
+  .navbar-items {
+    font-size: 1rem;
+    margin: 0;
+
+  }
+
+  .navbar-items-div {
+    display: block;
+  }
+
+  .container {
+    padding: 5px;
+  }
+
+  .container-main {
+    display: block;
+
+  }
+
+  .left-div {
+    width: 99%;
+    justify-content: center;
+    margin-top: 10vh;
+  }
+
+  .topNewDiv {
+    display: block;
+    justify-content: center;
+
+  }
+
+  .top_news_image {
+    width: 100%;
+  }
+
+  .text-areas-div {
+    width: 100%;
+  }
+
+  .navbar-ul {
+    display: block;
+  }
+
+  .navbar {
+    width: 100%;
+  }
+
+  .right-div {
+    width: 99%;
+
+  }
+
+  .main-page-categories {
+    display: block;
+  }
+
+  .categories-item {
+    width: 100%;
+  }
+  .container-detail{
+    display: block;
+  }
+  .custom-button-1{
+  
+    float: none;
+  }
+  .container-content{
+    margin-top: 20vh;
+  }
+  .categories-section{
+    width: 90%;
+  }
 }

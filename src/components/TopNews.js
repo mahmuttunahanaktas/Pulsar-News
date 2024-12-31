@@ -28,7 +28,7 @@ function TopNews() {
   if (loading) return <h1>Yükleniyor...</h1>
   if (error) return <p>HATA: {error}</p>
   return (
-    <div className='d-flex'>
+ 
       <ul>
         {
           news.map((item, index) => (
@@ -49,7 +49,7 @@ function TopNews() {
 
       </ul>
 
-    </div>
+   
   )
 }
 

@@ -13,7 +13,7 @@ function MainPage() {
   return (
     <div>
       <BreakingNews />
-      <div className='container border-bottom' style={{marginTop:'5%'}}>
+      <div className='container container-main border-bottom' style={{ marginTop: '5%' }}>
         <section className='left-div'>
           <TopNews></TopNews>
         </section>
@@ -24,8 +24,8 @@ function MainPage() {
       <section className='categories-mainpage-div w-100 d-flex justify-content-center mt-5'>
         <MainPageCategories></MainPageCategories>
       </section>
-      <section className='latest-videos-section w-100 d-flex justify-content-center mt-5' style={{background:'black',color:'gray'}}>
-      <LastVideos></LastVideos>
+      <section className='latest-videos-section w-100 d-flex justify-content-center mt-5' style={{ background: 'black', color: 'white' }}>
+        <LastVideos></LastVideos>
 
       </section>
     </div>
