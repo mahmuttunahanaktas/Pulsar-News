@@ -25,18 +25,16 @@ function MainPageCategories() {
     ];
 
     useEffect(() => {
-
         const fetchCategories = async () => {
             try {
                 const promises = sections.map(async (section) => {
                     const response = await fetch(
-                        `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=${API_KEY}`
+                        `https://api.nytimes.com/svc/topstories/v2/${section}..json?api-key=${API_KEY}`
                     );
                     if (!response.ok) {
                         throw new Error(`Error fetching ${section}:${response.status}`);
                     }
                     const data = await response.json();
-
                     //İlk Haberi al.
                     return {
                         section,
@@ -79,20 +77,10 @@ function MainPageCategories() {
                             <img className='w-100 h-50' src={category.img}
                                 alt={`${category.section} Thumbnail`}></img>
                             <h5 onClick={() => navigate(`/news/${encodeURIComponent(category.uri)}/nyt`)} className='item-headline'><strong>{category.headline}</strong></h5>
-
                             <p onClick={() => navigate(`/news/${encodeURIComponent(category.uri)}/nyt`)} className='item-abstract'>{category.abstract}</p>
-
-
-
-                        </div>
-
-                    ))
+                        </div>))
                 }
-
             </div>
-
-
         </div>
-
     )
 } export default MainPageCategories;

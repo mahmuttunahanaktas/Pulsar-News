@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { CiYoutube } from "react-icons/ci";
+
 
 
 export default function LastVideos() {
@@ -7,6 +7,7 @@ export default function LastVideos() {
   const channel_id = 'UCqnbDFdCpuN8CMEg0VuEBqA'
   const apiURL = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channel_id}&part=snippet&type=video&order=date&maxResults=4`;
   useEffect(() => {
+    
     fetch(apiURL)
       .then(response => response.json())
       .then(data => {
@@ -35,16 +36,16 @@ export default function LastVideos() {
         console.error('Error fetching data: ', error);
       });
 
-  }, []);
 
+  }, []);
 
   return (
     <div className='container m-5 d-block'>
-      <div className='d-flex'>
+      <div className='d-flex align-items-center m-2'>
+        <img style={{borderRadius:'100%',width:'4rem',height:'4rem',marginRight:'10px'}} src='/images/logoicon.jpg'></img>
         <h1 style={{ fontWeight: 'bold', marginRight: '5px' }}>Latest Videos</h1>
-        <CiYoutube style={{ fontSize: '3rem' }} />
       </div>
-      <div id="videoContainer" style={{ gap: '5px', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}></div>
+      <div id="videoContainer" className='videoContainer'></div>
     </div>
 
   )
