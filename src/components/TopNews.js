@@ -10,6 +10,7 @@ function TopNews() {
   //Haberleri API ile çekiyoruz
 
   useEffect(() => {
+    /*
     const fetchNews = async () => {
       try {
         const response = await fetch(API_URL);
@@ -23,7 +24,7 @@ function TopNews() {
         setLoading(false);
       }
     };
-    fetchNews();
+    fetchNews();*/
   }, []);
   if (loading) return <h1>Yükleniyor...</h1>
   if (error) return <p>HATA: {error}</p>

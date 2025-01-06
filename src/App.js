@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AdminPanel from './components/AdminPanel';
 import Footer from './components/Footer';
 import NewDetailPage from './components/NewDetailPage';
-
+import CategoryPage from './components/CategoryPage';
 function App() {
   return (
     <MyProvider>
@@ -21,6 +21,7 @@ function App() {
           <Route path="/adminpanel" element={<AdminPanel />} />
           <Route path="/detailpage" element={<NewDetailPage />} />
           <Route path="/news/:uri/:source" element={<NewDetailPage/>}/>
+          <Route path="/category/:section" element={<CategoryPage />} />
         </Routes>
         <Footer /> 
       </Router>

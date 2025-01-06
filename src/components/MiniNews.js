@@ -32,8 +32,6 @@ function MiniNews() {
         <div className='justify-contet-center'>
             <h2 style={{ borderBottom: '2px solid black', textAlign: 'center', fontWeight: 'bold' }}>Most Popular</h2>
 
-
-
             <ul>
                 {
                     news.map((item, index) => (

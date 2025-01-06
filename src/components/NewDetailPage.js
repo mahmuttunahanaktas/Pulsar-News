@@ -60,8 +60,8 @@ function MostPopularDetail() {
 
     return (
         <div className='container container-detail'>
-            <div className='container-content w-60' style={{ marginBottom: '50%' }}>
-                <h1 className='fs-1 fw-bold'>{actualNew.title}</h1>
+            <div className='container-content w-60' style={{marginBottom: '50%' }}>
+                <h1 className='fw-bold mt-5'>{actualNew.title}</h1>
                 <p className='mini_news_category'>
                     /{actualNew.section.charAt(0).toUpperCase() + actualNew.section.slice(1)} /
                     {actualNew.subsection.charAt(0).toUpperCase() + actualNew.subsection.slice(1)}

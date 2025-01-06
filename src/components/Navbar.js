@@ -27,6 +27,9 @@ function Navbar() {
     navigate("/adminpanel");
 
   };
+  const handleCategoryPage = (category) => {
+    navigate(`/category/${category.toLowerCase()}`);
+  };
 
 
 
@@ -37,14 +40,14 @@ function Navbar() {
 
         <div>
           <ul className='navbar-ul'>
-            <button className='navbar-items '>World</button>
-            <button className='navbar-items '>Politics</button>
-            <button className='navbar-items '>Science</button>
-            <button className='navbar-items '>Technology</button>
-            <button className='navbar-items '>Arts</button>
-            <button className='navbar-items '>Travel</button>
-            <button className='navbar-items '>Fashion</button>
-            <button className='navbar-items '>Health</button>
+            <button onClick={() => handleCategoryPage('World')} className='navbar-items '>World</button>
+            <button onClick={() => handleCategoryPage('Politics')} className='navbar-items '>Politics</button>
+            <button onClick={() => handleCategoryPage('Science')} className='navbar-items '>Science</button>
+            <button onClick={() => handleCategoryPage('Technology')} className='navbar-items '>Technology</button>
+            <button onClick={() => handleCategoryPage('Arts')} className='navbar-items '>Arts</button>
+            <button onClick={() => handleCategoryPage('Travel')} className='navbar-items '>Travel</button>
+            <button onClick={() => handleCategoryPage('Fashion')} className='navbar-items '>Fashion</button>
+            <button onClick={() => handleCategoryPage('Health')} className='navbar-items '>Health</button>
           </ul>
 
         </div>

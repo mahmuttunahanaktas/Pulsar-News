@@ -8,6 +8,7 @@ function MainPageCategories() {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+   
 
     //Api Key'im
     const API_KEY = "jragcoZD3twCzmu2uJV6ANvU8usEAyTx";
