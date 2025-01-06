@@ -265,6 +265,7 @@
   flex: wrap;
   justify-content: center;
 
+
 }
 
 .navbar {
@@ -380,17 +381,21 @@
   .categories-item {
     width: 100%;
   }
-  .container-detail{
+
+  .container-detail {
     display: block;
   }
-  .custom-button-1{
-  
+
+  .custom-button-1 {
+
     float: none;
   }
-  .container-content{
+
+  .container-content {
     margin-top: 20vh;
   }
-  .categories-section{
+
+  .categories-section {
     width: 90%;
   }
 }
