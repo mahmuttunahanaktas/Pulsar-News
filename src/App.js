@@ -10,21 +10,27 @@ import AdminPanel from './components/AdminPanel';
 import Footer from './components/Footer';
 import NewDetailPage from './components/NewDetailPage';
 import CategoryPage from './components/CategoryPage';
+import Settings from './components/Settings';
 function App() {
   return (
     <MyProvider>
       <Router>
         <Navbar />
+
         <Routes>
+
           <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/adminpanel" element={<AdminPanel />} />
           <Route path="/detailpage" element={<NewDetailPage />} />
-          <Route path="/news/:uri/:source" element={<NewDetailPage/>}/>
+          <Route path="/news/:uri/:source" element={<NewDetailPage />} />
           <Route path="/category/:section" element={<CategoryPage />} />
         </Routes>
-        <Footer /> 
+        <Settings />
+        <Footer />
+
       </Router>
+
     </MyProvider>
   );
 }

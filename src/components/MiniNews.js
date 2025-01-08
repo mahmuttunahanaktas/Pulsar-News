@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import LazyImage from './LazyImage';
 
 function MiniNews() {
     const navigate = useNavigate();
@@ -36,17 +37,19 @@ function MiniNews() {
                 {
                     news.map((item, index) => (
 
-                        <div key={index} onClick={() => navigate(`/news/${encodeURIComponent(item.uri)}/nyt`)} className="mini-news-div" style={{ height: '20vh' }} >
+                        <div key={index} onClick={() => navigate(`/news/${encodeURIComponent(item.uri)}/mostpopular`)} className="mini-news-div" style={{ height: '20vh' }} >
                             <div className="mini-text-areas-div">
                                 <p className='mini_news_category'>{item.section}</p>
                                 <p className='mini_news_title'>{item.title}</p>
                                 <p className='mini_news_category'>{item.published_date}</p>
                             </div>
                             {item.media && item.media[0] && item.media[0]["media-metadata"] && (
-                                <img className='mini_news_image'
+                                <LazyImage className='mini_news_image'
                                     src={item.media[0]["media-metadata"][2].url}
                                     alt={item.title}
                                 />
+
+
                             )}
 
                         </div>

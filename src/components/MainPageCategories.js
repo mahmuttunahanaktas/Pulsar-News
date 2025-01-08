@@ -2,13 +2,14 @@ import React, { useActionState, useEffect, useState } from 'react'
 import { NavItem } from 'react-bootstrap';
 import { Navigate, useNavigate } from 'react-router-dom';
 
+
 function MainPageCategories() {
     const navigate = useNavigate();
     //api'dan gelen veriler data arrayinde birikecek
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-   
+
 
     //Api Key'im
     const API_KEY = "jragcoZD3twCzmu2uJV6ANvU8usEAyTx";
@@ -49,9 +50,7 @@ function MainPageCategories() {
 
                 //tüm bölümlerin gelen ilk haberini al
                 const results = await Promise.all(promises);
-
                 //state'yi güncelle
-
                 setCategories(results);
 
             } catch (err) {
@@ -60,7 +59,6 @@ function MainPageCategories() {
 
             } finally {
                 setLoading(false);
-
             }
         };
         fetchCategories();
@@ -69,6 +67,7 @@ function MainPageCategories() {
 
     return (
         <div style={{ width: '60%' }}>
+           
             <div style={{ width: '100%', height: '10px', borderTop: '2px solid black', borderBottom: '2px solid black' }}></div>
             <div className="main-page-categories">
                 {

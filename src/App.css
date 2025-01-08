@@ -1,9 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: 0.4s;
-
+ 
+}
+body{
+  transition: 0.3s;
 }
 
 .main_div {
@@ -112,11 +117,13 @@
 }
 
 .mini-news-div {
+  height: auto;
   display: flex;
   border-bottom: 2px solid gray;
   margin: 5px;
   margin-bottom: 10px;
   padding: 5px;
+ 
 
 }
 
@@ -204,7 +211,6 @@
 .navbar-items {
   border: none;
   background-color: transparent;
-  color: black;
   margin: 10 px;
   padding: 10px;
   font-size: 1.2rem;
@@ -292,6 +298,7 @@
 .container-detail {
   display: flex;
   width: 60%;
+  margin-top: 10%;
 }
 
 .category-new {
@@ -459,3 +466,101 @@
     width: 90%;
   }
 }
+/* Toggle düğmesi */
+.checkbox {
+  
+  opacity: 0;
+  /* Görünmez yap */
+  position: absolute;
+  /* Sayfa düzenini bozmaz */
+}
+
+.checkbox-label {
+  background-color: #111;
+  /* Arka plan rengi */
+  width: 50px;
+  height: 26px;
+  border-radius: 50px;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fa-moon {
+  color: #f1c40f;
+  /* Ay rengi */
+}
+
+.fa-sun {
+  color: #f39c12;
+  /* Güneş rengi */
+}
+
+.checkbox-label .ball {
+  background-color: #fff;
+  /* Topun rengi */
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+  /* Geçiş animasyonu */
+}
+
+.checkbox:checked+.checkbox-label .ball {
+  transform: translateX(24px);
+  /* Topu sağa taşı */
+}
+.popup-overlay {
+  position: fixed; /* Sayfada kaydırmaktan bağımsız olması için */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Koyu arka plan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Tüm sayfadan üstte olmasını sağlıyoruz */
+}
+.popup-content {
+  background-color: rgb(240, 240, 240);
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%; /* Genişliği responsive hale getirebiliriz */
+  max-width: 500px; /* Maksimum genişlik */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1200; /* Tüm sayfadan üstte olmasını sağlıyoruz */
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+}
+.roboto-normal {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+/* Karanlık tema */
+body.dark {
+  background-color: #1b1d22;
+  
+}
+body.dark h1,
+body.dark p {
+  color: white;
+}
+body.dark .navbar-div {
+  background-color: #1b1d22 !important; /* Navbar'ı koyulaştır */
+
+}
+body.dark .navbar-ul {
+  color: white;
+}
+

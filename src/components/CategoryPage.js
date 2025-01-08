@@ -2,12 +2,15 @@ import { findNonSerializableValue } from '@reduxjs/toolkit';
 import React, { useEffect, useInsertionEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+
+
+
 function CategoryPage() {
   const navigate = useNavigate();
   const [news, setNews] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
-  const {section}=useParams();
+  const { section } = useParams();
 
   const API_URL = `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=jragcoZD3twCzmu2uJV6ANvU8usEAyTx`;
   useEffect(() => {
@@ -42,7 +45,7 @@ function CategoryPage() {
         <div style={{ width: '100%', height: '10px', borderTop: '2px solid black', borderBottom: '2px solid black' }}></div>
         <div className='catgeroy-news d-block'>
           {
-            news.map((theNew,index) => (
+            news.map((theNew, index) => (
               <div className='category-new' key={index}>
                 <p className='fs-6 text-secondary'>{theNew.published_date}</p>
                 <div className='category-new-content'>
@@ -50,13 +53,12 @@ function CategoryPage() {
                   <h5>{theNew.abstract}</h5>
                   <p className='fs-6 text-secondary'> - {theNew.byline}</p>
                 </div>
-                <img style={{ width: '33%' }}  src={theNew.multimedia[0].url}>
+                <img style={{ width: '33%' }} src={theNew.multimedia[0].url}>
                 </img>
               </div>
 
             ))
           }
-
         </div>
       </div>
     </div>

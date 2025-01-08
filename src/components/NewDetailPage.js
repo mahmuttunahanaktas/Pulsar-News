@@ -6,8 +6,10 @@ import CategoriesBar from './CategoriesBar';
 
 
 function MostPopularDetail() {
-
     const { uri, source } = useParams();
+    console.log("URI:", uri);
+    console.log("Source:", source);
+
     const [actualNew, setActualNew] = useState(null);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -17,50 +19,55 @@ function MostPopularDetail() {
     useEffect(() => {
         const MyApiKey = "jragcoZD3twCzmu2uJV6ANvU8usEAyTx";
         const apiUrl = source === 'nyt'
-            ? `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${MyApiKey}`
-            : `https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json?api-key=${MyApiKey}`;
-
-
-        fetch(apiUrl)
-            .then((response) => response.json())
-            .then((data) => {
-                // API'den gelen veriyi kontrol et
-                if (data.results) {
-                    const selectedNewItem = data.results.find(
-                        (item) => item.uri === decodeURIComponent(uri)
-                    );
-                    setActualNew(selectedNewItem);
-                } else {
-                    throw new Error('Veri alınamadı');
-                }
-            })
-            .catch((error) => {
-                setError(true);
-                console.error("Haber Yüklenirken bir sorun oluştu :/", error);
-            })
-            .finally(() => {
-                setLoading(false); // Yükleme işlemi tamamlandı
-            });
-
-    }, [uri, source])
+          ? `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${MyApiKey}`
+          : `https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json?api-key=${MyApiKey}`;
+      
+        console.log("İŞTE URL - > ", apiUrl);
+      
+        const fetchData = async () => {
+          try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            console.log("API'den dönen veri:", data);
+      
+            if (data.results) {
+              const selectedNewItem = data.results.find(
+                (item) => item.uri === decodeURIComponent(uri)
+              );
+              if (selectedNewItem) {
+                setActualNew(selectedNewItem);
+              } else {
+                throw new Error("Seçilen haber bulunamadı.");
+              }
+            } else {
+              throw new Error("Veri alınamadı");
+            }
+          } catch (error) {
+            setError(true);
+            console.error("Haber Yüklenirken bir sorun oluştu :/", error);
+          } finally {
+            setLoading(false); // Yükleme işlemi tamamlandı
+          }
+        };
+      
+        fetchData();
+      }, [uri, source]);
+      
 
     if (loading) {
         return <p>The New Is Loading...</p>;
     }
-
     if (error) {
         return <p>Haber yüklenirken bir hata oluştu. Lütfen tekrar deneyin.</p>;
     }
-
     if (!actualNew) {
         return <p>Veri bulunamadı.</p>;
     }
 
-
-
     return (
         <div className='container container-detail'>
-            <div className='container-content w-60' style={{marginBottom: '50%' }}>
+
+            <div className='container-content w-60 mt-4' style={{ marginBottom: '50%' }}>
                 <h1 className='fw-bold mt-5'>{actualNew.title}</h1>
                 <p className='mini_news_category'>
                     /{actualNew.section.charAt(0).toUpperCase() + actualNew.section.slice(1)} /
