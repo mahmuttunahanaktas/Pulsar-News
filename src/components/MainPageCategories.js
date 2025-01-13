@@ -76,8 +76,8 @@ function MainPageCategories() {
                             <p><strong> {category.section.toUpperCase()}</strong></p>
                             <img className='w-100 h-50' src={category.img}
                                 alt={`${category.section} Thumbnail`}></img>
-                            <h5 onClick={() => navigate(`/news/${encodeURIComponent(category.uri)}/nyt`)} className='item-headline'><strong>{category.headline}</strong></h5>
-                            <p onClick={() => navigate(`/news/${encodeURIComponent(category.uri)}/nyt`)} className='item-abstract'>{category.abstract}</p>
+                            <h5 onClick={() => navigate(`/news/${encodeURIComponent(category.uri)}/mostpopular`)} className='item-headline'><strong>{category.headline}</strong></h5>
+                            <p onClick={() => navigate(`/news/${encodeURIComponent(category.uri)}/mostpopular`)} className='item-abstract'>{category.abstract}</p>
                         </div>))
                 }
             </div>

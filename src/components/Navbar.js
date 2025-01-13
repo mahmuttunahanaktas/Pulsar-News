@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { usePopup } from '../context';
 
 function Navbar() {
-  const { adminButtonVisiblty, isAdminLogged, setIsAdminLogged } = useContext(MyContext);
+  const { adminButtonVisiblty, isAdminLogged, setIsAdminLogged ,handleCategoryPage} = useContext(MyContext);
   const navigate = useNavigate(); // useNavigate hook'u ile yönlendirme işlevi
   const handleAdmin = () => {
     if (isAdminLogged) {
@@ -29,9 +29,7 @@ function Navbar() {
     navigate("/adminpanel");
 
   };
-  const handleCategoryPage = (category) => {
-    navigate(`/category/${category.toLowerCase()}`);
-  };
+
 
   const { togglePopup } = usePopup();
 
@@ -41,14 +39,14 @@ function Navbar() {
         <h1 onClick={handleMain} className="brand" >Pulsar News</h1>
         <div>
           <ul className='navbar-ul'>
-            <button onClick={() => handleCategoryPage('World')} className='navbar-items '>World</button>
-            <button onClick={() => handleCategoryPage('Politics')} className='navbar-items '>Politics</button>
-            <button onClick={() => handleCategoryPage('Science')} className='navbar-items '>Science</button>
-            <button onClick={() => handleCategoryPage('Technology')} className='navbar-items '>Technology</button>
-            <button onClick={() => handleCategoryPage('Arts')} className='navbar-items '>Arts</button>
-            <button onClick={() => handleCategoryPage('Travel')} className='navbar-items '>Travel</button>
-            <button onClick={() => handleCategoryPage('Fashion')} className='navbar-items '>Fashion</button>
-            <button onClick={() => handleCategoryPage('Health')} className='navbar-items '>Health</button>
+            <button onClick={() => handleCategoryPage('World',navigate)} className='navbar-items'>World</button>
+            <button onClick={() => handleCategoryPage('Politics',navigate)} className='navbar-items '>Politics</button>
+            <button onClick={() => handleCategoryPage('Science',navigate)} className='navbar-items '>Science</button>
+            <button onClick={() => handleCategoryPage('Technology',navigate)} className='navbar-items '>Technology</button>
+            <button onClick={() => handleCategoryPage('Arts',navigate)} className='navbar-items '>Arts</button>
+            <button onClick={() => handleCategoryPage('Travel',navigate)} className='navbar-items '>Travel</button>
+            <button onClick={() => handleCategoryPage('Fashion',navigate)} className='navbar-items '>Fashion</button>
+            <button onClick={() => handleCategoryPage('Health',navigate)} className='navbar-items '>Health</button>
           </ul>
         </div>
         <div className="navbar-items-div d-flex align-items-center gap-2">

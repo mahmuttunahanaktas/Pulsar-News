@@ -15,7 +15,6 @@ function TopNews() {
   //Haberleri API ile çekiyoruz.
 
   useEffect(() => {
-
     const fetchNews = async () => {
       try {
         const response = await fetch(API_URL);
@@ -24,6 +23,7 @@ function TopNews() {
       } catch (err) {
         console.error("Hata Detayı:", err);
         setError(err.message);
+        setNews([]);
       } finally {
         setLoading(false);
       }
@@ -35,21 +35,25 @@ function TopNews() {
   return (
     <ul>
       {
-        news.map((item, index) => (
-          <div
-            onClick={() => navigate(`/news/${encodeURIComponent(item.uri)}/nyt`)}
-            className="topNewDiv" key={index}>
-            <div className="text-areas-div">
-              <p className='top_new_title'>{item.title}</p>
-              <p>{item.abstract}</p>
-            </div>
-           
-            <LazyImage className='top_news_image' src={item.multimedia[0].url} alt={item.title} />
-    
+        news && news.length > 0 ? (
+          news.map((item, index) => (
+            <div
+              onClick={() => navigate(`/news/${encodeURIComponent(item.uri)}/nyt`)}
+              className="topNewDiv" key={index}>
+              <div className="text-areas-div">
+                <p className='top_new_title'>{item.title}</p>
+                <p>{item.abstract}</p>
+              </div>
 
-          </div>
-        ))
-      }
+              <LazyImage className='top_news_image' src={item.multimedia[0].url} alt={item.title} />
+
+
+            </div>
+          ))
+        ) : (
+          <p>API HATA VERDİ.</p>
+        )}
+
 
     </ul>
 

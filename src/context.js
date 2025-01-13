@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-
 //context'i oluşturalım.
 const MyContext = createContext();
 export const usePopup = () => useContext(MyContext);
@@ -67,26 +66,22 @@ export const MyProvider = ({ children }) => {
     const [popupIsOppen, setPopupIsOppen] = useState(false);
 
     const togglePopup = () => setPopupIsOppen(!popupIsOppen)
-
-
-
     //temayı değiştirme kodunu contextimde hazır fonksiyon olarak saklıyorum
+
 
     const changeHandleTheme=()=>{
         setIsDarkMode((prev)=>!prev);
         document.body.classList.toggle("dark",!isDarkMode)
 
     };
-
-
-
-
-
-
+  
+    const handleCategoryPage = (category,navigateElement) => {
+        navigateElement(`/category/${category.toLowerCase()}`);
+      };
 
 
     return (
-        <MyContext.Provider value={{ changeHandleTheme,isDarkMode,setIsDarkMode,popupIsOppen, setPopupIsOppen, togglePopup, handleGoToPageDetail, isAdminLogged, setIsAdminLogged, login, breakingNew, setBreakingNew, adminButtonVisiblty, setAdminButtonVisibilty }}>
+        <MyContext.Provider value={{ handleCategoryPage,changeHandleTheme,isDarkMode,setIsDarkMode,popupIsOppen, setPopupIsOppen, togglePopup, handleGoToPageDetail, isAdminLogged, setIsAdminLogged, login, breakingNew, setBreakingNew, adminButtonVisiblty, setAdminButtonVisibilty }}>
             {children}
 
         </MyContext.Provider>

@@ -1,6 +1,7 @@
 import { findNonSerializableValue } from '@reduxjs/toolkit';
 import React, { useEffect, useInsertionEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { NavItem } from 'react-bootstrap';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 
@@ -46,7 +47,7 @@ function CategoryPage() {
         <div className='catgeroy-news d-block'>
           {
             news.map((theNew, index) => (
-              <div className='category-new' key={index}>
+              <div className='category-new' key={index} onClick={()=>navigate(`news/${encodeURIComponent(theNew.uri)}/nyt`)}>
                 <p className='fs-6 text-secondary'>{theNew.published_date}</p>
                 <div className='category-new-content'>
                   <h3 className='baslik'><strong>{theNew.title}</strong></h3>
