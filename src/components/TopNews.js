@@ -44,10 +44,7 @@ function TopNews() {
                 <p className='top_new_title'>{item.title}</p>
                 <p>{item.abstract}</p>
               </div>
-
               <LazyImage className='top_news_image' src={item.multimedia[0].url} alt={item.title} />
-
-
             </div>
           ))
         ) : (

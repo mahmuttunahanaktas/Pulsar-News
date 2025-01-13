@@ -5,21 +5,21 @@ export const usePopup = () => useContext(MyContext);
 
 //context için bir provider oluşturalım.
 export const MyProvider = ({ children }) => {
-    const [isDarkMode,setIsDarkMode]=useState(()=>{
-        const savedDarkMode=localStorage.getItem('isDarkMode');
-        return savedDarkMode==='true';
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        const savedDarkMode = localStorage.getItem('isDarkMode');
+        return savedDarkMode === 'true';
 
     });
-    useEffect(()=>{
-        localStorage.setItem('isDarkMode',isDarkMode);
-        if(isDarkMode){
+    useEffect(() => {
+        localStorage.setItem('isDarkMode', isDarkMode);
+        if (isDarkMode) {
             document.body.classList.add('dark');
         }
-        else{
+        else {
             document.body.classList.remove('dark');
         }
 
-    },[isDarkMode])
+    }, [isDarkMode])
     const [adminButtonVisiblty, setAdminButtonVisibilty] = useState('hidden');
     const [admin, setAdmin] = useState({ email: "admin", password: "1234" });
     const [isAdminLogged, setIsAdminLogged] = useState(() => {
@@ -69,21 +69,24 @@ export const MyProvider = ({ children }) => {
     //temayı değiştirme kodunu contextimde hazır fonksiyon olarak saklıyorum
 
 
-    const changeHandleTheme=()=>{
-        setIsDarkMode((prev)=>!prev);
-        document.body.classList.toggle("dark",!isDarkMode)
+    const changeHandleTheme = () => {
+        setIsDarkMode((prev) => !prev);
+        document.body.classList.toggle("dark", !isDarkMode)
 
     };
-  
-    const handleCategoryPage = (category,navigateElement) => {
+
+    const handleCategoryPage = (category, navigateElement) => {
         navigateElement(`/category/${category.toLowerCase()}`);
-      };
+    };
+
+
+    const [KategoriSayfasindanGelenSection,setKategoriSayfasindanGelenSection]=useState("bos");
+
 
 
     return (
-        <MyContext.Provider value={{ handleCategoryPage,changeHandleTheme,isDarkMode,setIsDarkMode,popupIsOppen, setPopupIsOppen, togglePopup, handleGoToPageDetail, isAdminLogged, setIsAdminLogged, login, breakingNew, setBreakingNew, adminButtonVisiblty, setAdminButtonVisibilty }}>
+        <MyContext.Provider value={{KategoriSayfasindanGelenSection,setKategoriSayfasindanGelenSection, handleCategoryPage, changeHandleTheme, isDarkMode, setIsDarkMode, popupIsOppen, setPopupIsOppen, togglePopup, handleGoToPageDetail, isAdminLogged, setIsAdminLogged, login, breakingNew, setBreakingNew, adminButtonVisiblty, setAdminButtonVisibilty }}>
             {children}
-
         </MyContext.Provider>
     );
 
