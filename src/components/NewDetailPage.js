@@ -113,7 +113,7 @@ function MostPopularDetail() {
   }
   return (
     <div className='container container-detail'>
-      <div className='container-content w-100 mt-4' style={{ marginBottom: '50%' }}>
+      <div className='container-content mt-4' style={{ marginBottom: '50%' }}>
         <h1 className='fw-bold mt-5'>{actualNew.title}</h1>
         <p className='mini_news_category'>
           /{actualNew.section.charAt(0).toUpperCase() + actualNew.section.slice(1)} /
@@ -137,7 +137,7 @@ function MostPopularDetail() {
           </button>
         </p>
       </div>
-      <CategoriesBar className='w-40'></CategoriesBar>
+      <CategoriesBar></CategoriesBar>
     </div>
   );
 } export default MostPopularDetail;
