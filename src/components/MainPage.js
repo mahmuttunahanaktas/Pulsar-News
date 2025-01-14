@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import BreakingNews from './BreakingNews'
 import MyContext from '../context';
 import TopNews from './TopNews';
 import MiniNews from './MiniNews';
@@ -8,11 +7,8 @@ import LastVideos from './LastVideos';
 
 
 function MainPage() {
-
-
   return (
     <div>
-      <BreakingNews />
       <div className='container container-main border-bottom' style={{ marginTop: '5%' }}>
         <section className='left-div'>
           <TopNews></TopNews>

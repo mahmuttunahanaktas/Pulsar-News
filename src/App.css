@@ -242,7 +242,10 @@ body{
   font-style: normal;
   font-size: 4rem;
 }
-
+.baslik1{background-color: #102c54; transition: 0.2s;}
+.baslik1:hover{
+  background-color: #1e4881;
+}
 .category-item:hover {
   background-color: #f0efed;
 }
@@ -310,7 +313,9 @@ body{
   padding: 5px;
   border-bottom: 2px solid gray;
 }
-
+.backgroundcustom{
+background-color:#424242 ;
+}
 .category-new:hover {
   .baslik {
     text-decoration: underline;
@@ -352,7 +357,6 @@ body{
   .header {
     text-align: center;
   }
-
   .mini_news_title {
     display: -webkit-box;
     -webkit-line-clamp: 2;

@@ -18,8 +18,12 @@ function CategoriesBar() {
                 <p>Politics</p>
                 <IoIosArrowForward />
             </div>
-            <div className='category-item' onClick={() => handleCategoryPage('Science',navigate)}>
-                <p>Science</p>
+            <div className='category-item' onClick={() => handleCategoryPage('Books',navigate)}>
+                <p>Books</p>
+                <IoIosArrowForward />
+            </div>
+            <div className='category-item' onClick={() => handleCategoryPage('Business',navigate)}>
+                <p>Business</p>
                 <IoIosArrowForward />
             </div>
             <div className='category-item' onClick={() => handleCategoryPage('Technology',navigate)}>
@@ -30,16 +34,13 @@ function CategoriesBar() {
                 <p>Arts</p>
                 <IoIosArrowForward />
             </div>
-            <div className='category-item' onClick={() => handleCategoryPage('Travel',navigate)}>
-                <p>Travel</p>
-                <IoIosArrowForward />
-            </div>
+          
             <div className='category-item' onClick={() => handleCategoryPage('Fashion',navigate)}>
                 <p>Fashion</p>
                 <IoIosArrowForward />
             </div>
-            <div className='category-item' onClick={() => handleCategoryPage('Health',navigate)}>
-                <p>Health</p>
+            <div className='category-item' onClick={() => handleCategoryPage('Sports',navigate)}>
+                <p>Sports</p>
                 <IoIosArrowForward />
             </div>
 

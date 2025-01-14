@@ -20,48 +20,12 @@ export const MyProvider = ({ children }) => {
         }
 
     }, [isDarkMode])
-    const [adminButtonVisiblty, setAdminButtonVisibilty] = useState('hidden');
-    const [admin, setAdmin] = useState({ email: "admin", password: "1234" });
-    const [isAdminLogged, setIsAdminLogged] = useState(() => {
-        const storedIsAdminLogged = localStorage.getItem('isAdminLogged');
-        return storedIsAdminLogged ? JSON.parse(storedIsAdminLogged) : false;
-    })
+
     const handleGoToPageDetail = (new_link) => {
         window.open(new_link, "_blank");
 
     };
-    useEffect(() => {
-        localStorage.setItem('isAdminLogged', JSON.stringify(isAdminLogged));
-    }, [isAdminLogged]);
-    const [breakingNew, setBreakingNew] = useState(() => {
-        const storedBreakingNew = localStorage.getItem('breakingNew');
-        return storedBreakingNew ? JSON.parse(storedBreakingNew) : '';
-    });
-    useEffect(() => {
-
-        if (isAdminLogged) {
-            setAdminButtonVisibilty('visible');
-
-        } else {
-            setAdminButtonVisibilty('hidden');
-
-        }
-
-    }, [isAdminLogged]);
-
-    useEffect(() => {
-        localStorage.setItem('breakingNew', JSON.stringify(breakingNew));
-    }, [breakingNew]);
-
-    const login = (email, password) => {
-        if (email === admin.email && password === admin.password) {
-            setIsAdminLogged(true);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+    
 
     const [popupIsOppen, setPopupIsOppen] = useState(false);
 
@@ -82,10 +46,11 @@ export const MyProvider = ({ children }) => {
 
     const [KategoriSayfasindanGelenSection,setKategoriSayfasindanGelenSection]=useState("bos");
 
+    const [selectedComponent, setSelectedComponent] = useState('');
 
 
     return (
-        <MyContext.Provider value={{KategoriSayfasindanGelenSection,setKategoriSayfasindanGelenSection, handleCategoryPage, changeHandleTheme, isDarkMode, setIsDarkMode, popupIsOppen, setPopupIsOppen, togglePopup, handleGoToPageDetail, isAdminLogged, setIsAdminLogged, login, breakingNew, setBreakingNew, adminButtonVisiblty, setAdminButtonVisibilty }}>
+        <MyContext.Provider value={{selectedComponent,setSelectedComponent,KategoriSayfasindanGelenSection,setKategoriSayfasindanGelenSection, handleCategoryPage, changeHandleTheme, isDarkMode, setIsDarkMode, popupIsOppen, setPopupIsOppen, togglePopup, handleGoToPageDetail}}>
             {children}
         </MyContext.Provider>
     );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import LazyImage from './LazyImage';
+import { CircularProgress } from '@mui/material';
 
 function MiniNews() {
     const navigate = useNavigate();
@@ -27,7 +28,7 @@ function MiniNews() {
         fetchNews();
     }, []);
 
-    if (loading) return <h1>Yükleniyor...</h1>
+  if (loading) return <div className='w-full h-screen flex justify-center items-center'><CircularProgress color="secondary" /></div>
     if (error) return <p>HATA: {error}</p>
     return (
         <div className='justify-contet-center'>
