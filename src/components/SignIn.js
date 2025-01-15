@@ -3,11 +3,11 @@ import { Snackbar, Alert } from '@mui/material';
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Fade } from '@mui/material';
-import { Navigate,useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 function SignIn() {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -29,6 +29,7 @@ function SignIn() {
         borderRadius: '4px',
         padding: '10px',
         width: '100%',
+        fontFamily: 'sans-serif',
         outline: 'none',
         fontSize: '16px',
     }));
@@ -37,14 +38,15 @@ function SignIn() {
         animation: shakeAnimation2 ? `${shake} 0.5s ease-in-out` : 'none',
         borderRadius: '4px',
         padding: '10px',
+        fontFamily: 'sans-serif',
         width: '100%',
         outline: 'none',
         fontSize: '16px',
     }));
 
-    const handleGoToSignUp=()=>{
+    const handleGoToSignUp = () => {
         navigate("/SignUp");
-      };
+    };
 
 
     const handleSignIn = () => {
@@ -80,7 +82,7 @@ function SignIn() {
                         <StyledDiv shakeAnimation={shakeAnimation}>
                             <span className='text-xl'>Email Adress*</span>
                         </StyledDiv>
-                        <input onChange={(e) => setEmail(e.target.value)} value={email} type='email' className='p-2 text-md rounded border'></input>
+                        <input onChange={(e) => setEmail(e.target.value)} value={email} type='email' className='font-sans p-2 text-md rounded border'></input>
                     </div>
 
 
@@ -88,7 +90,8 @@ function SignIn() {
                     <div className='my-4 w-64 flex flex-col gap-2'>
                         <StyledDiv2 shakeAnimation2={shakeAnimation2}>
                             <span className='text-xl'>Password*</span>
-                        </StyledDiv2>                        <input onChange={(e) => setPassword(e.target.value)} value={password} type='password' className='p-2 text-md rounded border'></input>
+                        </StyledDiv2>
+                        <input onChange={(e) => setPassword(e.target.value)} value={password} type='password' className='font-sans p-2 text-md rounded border'></input>
                     </div>
 
                     <div className='w-100 flex justify-center items-center'>

@@ -235,7 +235,10 @@ body{
   font-size: 1.5rem;
   align-items: center;
 }
+.bla1{
+  font-family: "Rye", serif;
 
+}
 .bla {
   font-family: "Rye", serif;
   font-weight: 400;

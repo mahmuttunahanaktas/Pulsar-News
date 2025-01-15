@@ -31,15 +31,15 @@ function Navbar() {
           </ul>
         </div>
         <div className="navbar-items-div d-flex align-items-center gap-2">
-        <button onClick={(e)=>navigate("/SignIn")} className="btn btn-light border d-flex align-items-center">
-            <RiAccountCircleLine  className='mr-2 text-xl'/>
+          <button onClick={(e) => navigate("/SignIn")} className="btn btn-light border d-flex align-items-center">
+            <RiAccountCircleLine className='mr-2 text-xl' />
             <p className="m-0 font-sans">Sign In</p>
           </button>
           <button onClick={togglePopup} className='p-2 rounded hover:bg-gray-200 transition border'>
             <IoSettingsSharp className='text-xl' />
           </button>
-        
-        
+
+
 
         </div>
       </nav>

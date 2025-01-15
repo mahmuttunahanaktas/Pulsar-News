@@ -10,6 +10,7 @@ import { LuSearch } from "react-icons/lu";
 
 
 
+
 function AdminPanelBar() {
     const {setSelectedComponent}=useContext(MyContext);
 
@@ -25,15 +26,15 @@ function AdminPanelBar() {
                 <p className='font-sans  text-lg m-0 p-0'>Account Settings</p>
             </button>
 
-            <button className='rounded-xl hover:bg-gray-100 flex items-center gap-2 mx-4 my-1 py-3 px-1'>
+            <button onClick={(e)=>setSelectedComponent("EditNews")} className='rounded-xl hover:bg-gray-100 flex items-center gap-2 mx-4 my-1 py-3 px-1'>
                 <TbNews className='text-3xl' />
                 <p className='font-sans  text-lg m-0 p-0'>Edit News</p>
             </button>
 
 
-            <button className='rounded-xl hover:bg-gray-100 flex items-center gap-2 mx-4 my-1 py-3 px-1'>
+            <button onClick={(e)=>setSelectedComponent("EditCategories")}  className='rounded-xl hover:bg-gray-100 flex items-center gap-2 mx-4 my-1 py-3 px-1'>
                 <TbCategoryPlus className='text-3xl' />
-                <p className='font-sans  text-lg m-0 p-0'>Add Category</p>
+                <p className='font-sans  text-lg m-0 p-0'>Edit Categories</p>
             </button>
 
             <button className='rounded-xl hover:bg-gray-100 flex items-center gap-2 mx-4 my-1 py-3 px-1'>

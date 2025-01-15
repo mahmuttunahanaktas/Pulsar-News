@@ -1,7 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './components/Login';
 import MainPage from './components/MainPage';
 import { MyProvider } from './context';
 import { ToastContainer } from 'react-toastify';
@@ -42,7 +41,6 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/SignIn" element={<SignIn />} />
             <Route path="/SignUp" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/adminpanel" element={<AdminPanel />} />
             <Route path="/detailpage" element={<NewDetailPage />} />
             <Route path="/news/:uri/:source" element={<NewDetailPage />} />

@@ -4,6 +4,8 @@ import { NavItem } from 'react-bootstrap';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import MyContext from '../context';
+import LazyImage from './LazyImage';
+
 
 function CategoryPage() {
   const navigate = useNavigate();
@@ -62,8 +64,8 @@ function CategoryPage() {
                   <h5>{theNew.abstract}</h5>
                   <p className='fs-6 text-secondary'> - {theNew.byline}</p>
                 </div>
-                <img style={{ width: '33%' }} src={theNew.multimedia[0].url}>
-                </img>
+                <LazyImage style={{ width: '33%' }} src={theNew.multimedia[0].url}>
+                </LazyImage>
               </div>
             ))
           }
