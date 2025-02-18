@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 import MyContext from '../context';
 import { IoSettingsSharp } from "react-icons/io5";
@@ -7,12 +7,34 @@ import { usePopup } from '../context';
 import { RiAccountCircleLine } from "react-icons/ri";
 
 function Navbar() {
+  const [islogin, setIslogin] = useState(false);
   const { handleCategoryPage } = useContext(MyContext);
   const navigate = useNavigate();
   const handleMain = () => {
     navigate("/");
   };
+
   const { togglePopup } = usePopup();
+
+  const handleAuth = () => {
+    if (islogin) {
+      localStorage.removeItem('jwt');
+      setIslogin(false);
+
+    } else {
+      navigate("/SignIn")
+
+    }
+  }
+  useEffect(() => {
+
+    const token = localStorage.getItem('jwt')
+    setIslogin(!!token); 
+
+
+
+
+  }, []);
 
   return (
     <div className='navbar-div d-flex justify-content-center w-100'>
@@ -31,16 +53,13 @@ function Navbar() {
           </ul>
         </div>
         <div className="navbar-items-div d-flex align-items-center gap-2">
-          <button onClick={(e) => navigate("/SignIn")} className="btn btn-light border d-flex align-items-center">
+          <button onClick={(e) => handleAuth()} className="btn btn-light border d-flex align-items-center">
             <RiAccountCircleLine className='mr-2 text-xl' />
-            <p className="m-0 font-sans">Sign In</p>
+            <p className="m-0 font-sans">{islogin ? "Çıkış Yap" : "Giriş Yap"}</p>
           </button>
           <button onClick={togglePopup} className='p-2 rounded hover:bg-gray-200 transition border'>
             <IoSettingsSharp className='text-xl' />
           </button>
-
-
-
         </div>
       </nav>
     </div>

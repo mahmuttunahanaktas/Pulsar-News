@@ -4,16 +4,20 @@ import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Fade } from '@mui/material';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
+
 
 
 function SignIn() {
+    const [succes, setSucces] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [shakeAnimation, setShakeAnimation] = useState(false);
     const [shakeAnimation2, setShakeAnimation2] = useState(false);
-    const [sa,sa2]=useState(false);
 
     // Sallama animasyonu
     const shake = keyframes`
@@ -47,20 +51,58 @@ function SignIn() {
     const handleGoToSignUp = () => {
         navigate("/SignUp");
     };
+    const handleGoToMain = () => {
+        navigate("/");
+    };
+
+    const handleCloseSuccess = () => {
+        setSucces(false);
+    };
+    const handleSignIn = async () => {
+        if (email === '' || password === '') {
+            setOpen(true);
+            setShakeAnimation(true);
+            setShakeAnimation2(true);
+            setTimeout(() => setShakeAnimation(false), 500);
+            setTimeout(() => setShakeAnimation2(false), 500);
+        } else {
+
+            try {
+                const response = await fetch('http://localhost:3000/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+                if(!response.ok){
+                    throw new Error('Giriş Başarısız');
+                }
+                const data=await response.json();
+                console.log("GİRİŞ BAŞARILI",data);
+                localStorage.setItem('jwt',data.access_token);
+                setSucces(true);
+                setTimeout(() => setSucces(false), 3000);
+                setTimeout(() => setLoading(false), 1000);
+                setTimeout(() => handleGoToMain(), 3000);
 
 
-    const handleSignIn = () => {
 
-        //diyelim şifre yanlış.
-        setOpen(true);
-        setShakeAnimation(true);
-        setShakeAnimation2(true);
-        setPassword("");
-        setEmail("");
+            } catch (error) {
+                console.error('Register Error: ', error);
+                //Girilen verilerde problem varsa
+                setOpen(true)
+                setShakeAnimation(true);
+                setShakeAnimation2(true);
+                setTimeout(() => setShakeAnimation(false), 500);
+                setTimeout(() => setShakeAnimation2(false), 500);
+                setLoading(false)
 
-        // Animasyonu sıfırlamak için bir süre sonra sıfırla
-        setTimeout(() => setShakeAnimation(false), 500);
-        setTimeout(() => setShakeAnimation2(false), 500);
+            }
+
+        }
+
+
 
     };
 
@@ -70,6 +112,16 @@ function SignIn() {
                 <Snackbar open={open} autoHideDuration={3000} onClose={() => setOpen(false)}>
                     <Alert severity="error" onClose={() => setOpen(false)}>
                         <p className='font-sans text-lg'>Invalid values! Please check out your informations.</p>
+                    </Alert>
+                </Snackbar>
+                <Snackbar
+                    open={succes}
+                    autoHideDuration={6000}
+                    onClose={handleCloseSuccess} // handleCloseSuccess fonksiyonunu burada kullanıyoruz
+                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                >
+                    <Alert onClose={handleCloseSuccess} severity="success" sx={{ width: '100%' }}>
+                        <p className='font-sans text-lg'> Login successfully!</p>
                     </Alert>
                 </Snackbar>
                 <div className="bg-white border shadow-md rounded-2xl m-3 flex justify-center items-center text-center px-40 py-3">
@@ -95,7 +147,7 @@ function SignIn() {
                     </div>
 
                     <div className='w-100 flex justify-center items-center'>
-                        <button onClick={handleSignIn} className='baslik1 m-4 px-5 py-2 rounded text-center shadow-sm text-white text-2xl'>Sign In</button>
+                        <button onClick={handleSignIn} className='baslik1 m-4 px-5 py-2 rounded text-center shadow-sm text-white text-2xl'>{loading ? <CircularProgress color="secondary" /> : "Sign In"}</button>
                     </div>
 
 

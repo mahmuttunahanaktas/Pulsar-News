@@ -9,12 +9,14 @@ import { CircularProgress } from '@mui/material';
 function SignUp() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
   const [shakeAnimation, setShakeAnimation] = useState(false);
   const [shakeAnimation2, setShakeAnimation2] = useState(false);
   const [succes, setSucces] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [vpassword, setVpassword] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleGoToSignIn = () => {
     navigate("/SignIn");
@@ -34,7 +36,7 @@ function SignUp() {
     borderRadius: '4px',
     padding: '10px',
     width: '100%',
-    fontFamily:'sans-serif',
+    fontFamily: 'sans-serif',
     outline: 'none',
     fontSize: '16px',
   }));
@@ -44,24 +46,62 @@ function SignUp() {
     borderRadius: '4px',
     padding: '10px',
     width: '100%',
-    fontFamily:'sans-serif',
+    fontFamily: 'sans-serif',
     outline: 'none',
     fontSize: '16px',
   }));
 
-  const handleSignUp = () => {
-    setLoading(true);
-    // Diyelim şifre yanlış.
-    setShakeAnimation(true);
-    setShakeAnimation2(true);
-    setSucces(true);
-    setOpen(true);
 
-    // Animasyonu sıfırlamak için bir süre sonra sıfırla
-    setTimeout(() => setShakeAnimation(false), 500);
-    setTimeout(() => setShakeAnimation2(false), 500);
-    setTimeout(() => setLoading(false), 3000);
+  //Kayıt olma kodları
+  const handleSignUp = async () => {
+
+    if (name === '' || email === '' || vpassword === '' || password === '') {
+      setOpen(true)
+    } else {
+      if (vpassword === password) {
+        console.log(vpassword, password)
+        setLoading(true);
+        try {
+          const response = await fetch('http://localhost:3000/auth/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, password, email }),
+          });
+          if (!response.ok) {
+            throw new Error('Kayıt Başarısız');
+          }
+          const data = await response.json();
+          console.log('Kayıt Başarılı!', data);
+          setSucces(true);
+          setTimeout(() => setSucces(false), 3000);
+          setTimeout(() => setLoading(false), 1000);
+
+          setTimeout(() => handleGoToSignIn(), 3000);
+
+
+
+        } catch (error) {
+          console.error('Register Error: ', error);
+          //Girilen verilerde problem varsa
+          setOpen(true)
+          setShakeAnimation(true);
+          setShakeAnimation2(true);
+          setTimeout(() => setShakeAnimation(false), 500);
+          setTimeout(() => setShakeAnimation2(false), 500);
+          setLoading(false)
+
+        }
+
+      }else{
+        setOpen(true);
+      }
+
+    }
+
   };
+
 
   const handleCloseSuccess = () => {
     setSucces(false);
@@ -91,7 +131,7 @@ function SignUp() {
         <div className="bg-white border shadow-xl rounded-2xl m-3 px-20 py-5 block">
           <div className='my-4 w-64 flex flex-col gap-2'>
             <span className='text-xl'>Full Name</span>
-            <input type='text' className='font-sans p-2 text-md rounded border-1 border-gray-600'></input>
+            <input onChange={(e) => setName(e.target.value)} type='text' value={name} className='font-sans p-2 text-md rounded border-1 border-gray-600'></input>
           </div>
 
           <div className='my-4 w-64 flex flex-col gap-2'>
@@ -108,11 +148,11 @@ function SignUp() {
             <input onChange={(e) => setPassword(e.target.value)} value={password} type='password' className='border-1 border-gray-600 p-2 text-md rounded'></input>
           </div>
           <div className='my-4 w-64 flex flex-col gap-2'>
-            <input placeholder='Confirm Password' type='password' className='p-2 border-1 font-sans border-gray-600 text-md rounded'></input>
+            <input onChange={(e) => setVpassword(e.target.value)} value={vpassword} placeholder='Confirm Password' type='password' className='p-2 border-1 font-sans border-gray-600 text-md rounded'></input>
           </div>
 
           <div className='w-100 flex justify-center items-center'>
-            <button onClick={handleSignUp} className='baslik1 m-4  px-5 py-2 rounded text-center shadow-sm text-white text-lg'>{loading ? <CircularProgress color="secondary" /> : "Create Account"}</button>
+            <button onClick={(e) => handleSignUp()} className='baslik1 m-4  px-5 py-2 rounded text-center shadow-sm text-white text-lg'>{loading ? <CircularProgress color="secondary" /> : "Create Account"}</button>
           </div>
 
           <p className="text-md text-center lex-wrap font-bold">
