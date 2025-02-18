@@ -13,7 +13,7 @@ function SignIn() {
     const [email, setEmail] = useState('');
     const [shakeAnimation, setShakeAnimation] = useState(false);
     const [shakeAnimation2, setShakeAnimation2] = useState(false);
-
+    const [sa,sa2]=useState(false);
 
     // Sallama animasyonu
     const shake = keyframes`
