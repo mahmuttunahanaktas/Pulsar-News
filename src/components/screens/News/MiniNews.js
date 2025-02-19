@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import LazyImage from './LazyImage';
+import LazyImage from '../../other/LazyImage';
 import { CircularProgress } from '@mui/material';
 
 function MiniNews() {

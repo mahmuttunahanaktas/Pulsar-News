@@ -1,20 +1,20 @@
 import './App.css';
-import Navbar from './components/Navbar';
+import Navbar from './components/other/Navbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MainPage from './components/MainPage';
+import MainPage from './components/screens/MainPage';
 import { MyProvider } from './context';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import AdminPanel from './components/AdminPanel';
-import Footer from './components/Footer';
-import NewDetailPage from './components/NewDetailPage';
-import CategoryPage from './components/CategoryPage';
-import Settings from './components/Settings';
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
+import AdminPanel from './components/screens/admin/AdminPanel';
+import Footer from './components/other/Footer';
+import NewDetailPage from './components/screens/News/NewDetailPage';
+import CategoryPage from './components/screens/News/CategoryPage';
+import Settings from './components/screens/Settings';
+import SignIn from './components/screens/auth/SignIn';
+import SignUp from './components/screens/auth/SignUp';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import NotFound from './components/NotFound'; // 404 bileşeni
+import NotFound from './components/other/NotFound'; // 404 bileşeni
 const theme = createTheme({
   palette: {
     mode: 'light', // 'dark' yaparak koyu tema seçebilirsin

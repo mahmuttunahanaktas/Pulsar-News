@@ -3,8 +3,8 @@ import React, { useContext, useEffect, useInsertionEffect, useState } from 'reac
 import { NavItem } from 'react-bootstrap';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import MyContext from '../context';
-import LazyImage from './LazyImage';
+import MyContext from '../../../context';
+import LazyImage from '../../other/LazyImage';
 
 
 function CategoryPage() {

@@ -11,7 +11,6 @@ import { CircularProgress } from '@mui/material';
 function SignIn() {
     const [succes, setSucces] = useState(false);
     const [loading, setLoading] = useState(false);
-
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [password, setPassword] = useState('');

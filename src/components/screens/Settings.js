@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { FaMoon } from "react-icons/fa";
 import { MdSunny } from "react-icons/md";
-import MyContext from '../context';
-import { usePopup } from '../context';
+import MyContext from '../../context';
+import { usePopup } from '../../context';
 import { IoIosCloseCircle } from "react-icons/io";
 import { IoSettingsSharp } from "react-icons/io5";
 import { Fade } from '@mui/material';

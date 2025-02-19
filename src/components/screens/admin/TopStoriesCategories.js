@@ -1,7 +1,6 @@
 import React,{useContext} from 'react'
 import { Fade } from '@mui/material';
-import MyContext from '../context';
-
+import MyContext from '../../../context';
 
 export default function TopStoriesCategories() {
     const { selectedComponent, setSelectedComponent } = useContext(MyContext);

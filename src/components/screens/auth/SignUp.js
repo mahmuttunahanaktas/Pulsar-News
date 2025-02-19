@@ -54,7 +54,6 @@ function SignUp() {
 
   //Kayıt olma kodları
   const handleSignUp = async () => {
-
     if (name === '' || email === '' || vpassword === '' || password === '') {
       setOpen(true)
     } else {
@@ -94,7 +93,7 @@ function SignUp() {
 
         }
 
-      }else{
+      } else {
         setOpen(true);
       }
 
@@ -130,7 +129,7 @@ function SignUp() {
         </div>
         <div className="bg-white border shadow-xl rounded-2xl m-3 px-20 py-5 block">
           <div className='my-4 w-64 flex flex-col gap-2'>
-            <span className='text-xl'>Full Name</span>
+            <span className='text-xl'>Full Name*</span>
             <input onChange={(e) => setName(e.target.value)} type='text' value={name} className='font-sans p-2 text-md rounded border-1 border-gray-600'></input>
           </div>
 
@@ -145,10 +144,10 @@ function SignUp() {
             <StyledDiv2 shakeAnimation2={shakeAnimation2}>
               <span className='text-xl'>Password*</span>
             </StyledDiv2>
-            <input onChange={(e) => setPassword(e.target.value)} value={password} type='password' className='border-1 border-gray-600 p-2 text-md rounded'></input>
+            <input placeholder='Create a stronger password' onChange={(e) => setPassword(e.target.value)} value={password} type='password' className='border-1 border-gray-600 p-2 text-md rounded'></input>
           </div>
           <div className='my-4 w-64 flex flex-col gap-2'>
-            <input onChange={(e) => setVpassword(e.target.value)} value={vpassword} placeholder='Confirm Password' type='password' className='p-2 border-1 font-sans border-gray-600 text-md rounded'></input>
+            <input placeholder='Confirm Password' onChange={(e) => setVpassword(e.target.value)} value={vpassword} type='password' className='border-1 border-gray-600 p-2 text-md rounded'></input>
           </div>
 
           <div className='w-100 flex justify-center items-center'>

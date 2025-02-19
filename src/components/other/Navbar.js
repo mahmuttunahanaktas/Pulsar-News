@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
-import MyContext from '../context';
+import MyContext from '../../context';
 import { IoSettingsSharp } from "react-icons/io5";
 import 'react-toastify/dist/ReactToastify.css';
-import { usePopup } from '../context';
+import { usePopup } from '../../context';
 import { RiAccountCircleLine } from "react-icons/ri";
 
 function Navbar() {
@@ -13,6 +13,8 @@ function Navbar() {
   const handleMain = () => {
     navigate("/");
   };
+  const token = localStorage.getItem('jwt')
+
 
   const { togglePopup } = usePopup();
 
@@ -27,14 +29,8 @@ function Navbar() {
     }
   }
   useEffect(() => {
-
-    const token = localStorage.getItem('jwt')
     setIslogin(!!token); 
-
-
-
-
-  }, []);
+  }, [token]);
 
   return (
     <div className='navbar-div d-flex justify-content-center w-100'>

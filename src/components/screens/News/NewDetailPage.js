@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import MyContext from '../context';
+import MyContext from '../../../context';
 import { CiLocationArrow1 } from "react-icons/ci";
 import CategoriesBar from './CategoriesBar';
 function MostPopularDetail() {
@@ -8,8 +8,8 @@ function MostPopularDetail() {
   const [actualNew, setActualNew] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
-  const { handleGoToPageDetail,KategoriSayfasindanGelenSection,setKategoriSayfasindanGelenSection } = useContext(MyContext);
-  const [actualSection,setActualSection]=useState("home");
+  const { handleGoToPageDetail, KategoriSayfasindanGelenSection, setKategoriSayfasindanGelenSection } = useContext(MyContext);
+  const [actualSection, setActualSection] = useState("home");
   //farklı 2 api'den veri çekitğim için resimlerinin hücreleri de farklı olduğundan resim için dinamik bir fonsksiyon aşşağıda bulunmaktadır.
   const getImageSrc = () => {
     if (actualNew?.media?.[0] || actualNew?.multimedia?.[0]) {
@@ -22,7 +22,7 @@ function MostPopularDetail() {
     return 'fallback-image-url.jpg'; // Her durumda kullanılacak yedek resim
   };
 
-  const getImageAlt=()=>{
+  const getImageAlt = () => {
     if (actualNew?.media?.[0] || actualNew?.multimedia?.[0]) {
       if (source === 'nyt') {
         return actualNew.multimedia[0].caption || actualNew.title;
@@ -32,7 +32,7 @@ function MostPopularDetail() {
     }
     return actualNew.title; // Her durumda kullanılacak yedek resim
   }
-  const getCopyright=()=>{
+  const getCopyright = () => {
     if (actualNew?.media?.[0] || actualNew?.multimedia?.[0]) {
       if (source === 'nyt') {
         return actualNew.multimedia[0]?.copyright ? actualNew.multimedia[0]?.copyright : "The New York Times";
@@ -43,31 +43,31 @@ function MostPopularDetail() {
     return actualNew.title; // Her durumda kullanılacak yedek resim
   }
 
-  const getCaption=()=>{
-    if(actualNew?.media?.[0] || actualNew?.multimedia?.[0]){
-      if(source==='nyt'){
+  const getCaption = () => {
+    if (actualNew?.media?.[0] || actualNew?.multimedia?.[0]) {
+      if (source === 'nyt') {
         return actualNew.multimedia[0]?.caption;
-      }else if(source==='mostpopular'){
-       return actualNew.media[0]?.caption;
+      } else if (source === 'mostpopular') {
+        return actualNew.media[0]?.caption;
       }
     }
     return " "
 
   }
-  useEffect(()=>{
-    if(KategoriSayfasindanGelenSection!=="bos"){
+  useEffect(() => {
+    if (KategoriSayfasindanGelenSection !== "bos") {
       setActualSection(KategoriSayfasindanGelenSection);
       setKategoriSayfasindanGelenSection("bos");
 
-    }else if(KategoriSayfasindanGelenSection==="bos"){
+    } else if (KategoriSayfasindanGelenSection === "bos") {
       setActualSection("home");
     }
 
-  },[KategoriSayfasindanGelenSection,actualSection]);
+  }, [KategoriSayfasindanGelenSection, actualSection]);
 
   useEffect(() => {
 
-  
+
 
 
 
@@ -112,8 +112,8 @@ function MostPopularDetail() {
     return <p>Veri bulunamadı.</p>;
   }
   return (
-    <div className='container container-detail'>
-      <div className='container-content mt-4' style={{ marginBottom: '50%' }}>
+    <div className='container flex flex-row gap-5 mt-5 justify-between'>
+      <div className='container-content'>
         <h1 className='fw-bold mt-5'>{actualNew.title}</h1>
         <p className='mini_news_category'>
           /{actualNew.section.charAt(0).toUpperCase() + actualNew.section.slice(1)} /
@@ -137,7 +137,7 @@ function MostPopularDetail() {
           </button>
         </p>
       </div>
-      <CategoriesBar></CategoriesBar>
+      <CategoriesBar style={{width:'20%'}}></CategoriesBar>
     </div>
   );
 } export default MostPopularDetail;

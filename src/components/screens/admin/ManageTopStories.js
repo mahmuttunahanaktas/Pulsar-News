@@ -1,6 +1,6 @@
 import React from 'react'
 import { Fade } from '@mui/material';
-import LazyImage from './LazyImage';
+import LazyImage from '../../other/LazyImage';
 import { MdRestartAlt } from "react-icons/md";
 
 import { BsSearch } from "react-icons/bs";

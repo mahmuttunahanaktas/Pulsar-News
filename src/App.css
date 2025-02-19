@@ -162,7 +162,6 @@ body{
 
 .container-content {
   border-top: 2px solid black;
-  margin-top: 5%;
 
 
 }
@@ -301,11 +300,7 @@ body{
 
 }
 
-.container-detail {
-  display: flex;
-  width: 60%;
-  margin-top: 10%;
-}
+
 
 .category-new {
   gap: 10px;
@@ -469,9 +464,7 @@ background-color:#424242 ;
     margin-top: 20vh;
   }
 
-  .categories-section {
-    width: 90%;
-  }
+ 
 }
 /* Toggle düğmesi */
 .checkbox {

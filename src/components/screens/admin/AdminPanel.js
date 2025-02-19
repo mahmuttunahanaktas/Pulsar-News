@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
-import AdminPanelBar from './AdminPanelBar'
-import SignIn from './SignIn';
+import AdminPanelBar from './AdminPanelBar.js'
 import AdminAccountSettings from './AdminAccountSettings';
-import MyContext from '../context.js';
+import MyContext from '../../../context.js';
 import ManageMostPopular from './ManageMostPopular.js';
 import ManageTopStories from './ManageTopStories.js';
 import EditNews1 from './EditNews1.js';
 import { Fade } from '@mui/material';
 import TopStoriesCategories from './TopStoriesCategories.js';
 import EditCategories from './EditCategories.js';
+import UserList from './UserList.js';
 
 
 function AdminPanel() {
@@ -20,10 +20,8 @@ function AdminPanel() {
         switch (selectedComponent) {
             case 'AccountSettings':
                 return <AdminAccountSettings />
-
             case 'EditNews':
                 return <EditNews1 />;
-
             case 'top':
                 return <TopStoriesCategories />;
 
@@ -31,6 +29,9 @@ function AdminPanel() {
                 return <ManageMostPopular />;
             case 'EditCategories':
                 return <EditCategories />;
+
+            case 'userlist':
+                return <UserList />;
 
             case 'home' || 'world' || 'politics' || 'books' || 'business' || 'technology' || 'arts' || 'fashion' || 'sports':
                 return <ManageTopStories />;

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import MyContext from '../context';
-import TopNews from './TopNews';
-import MiniNews from './MiniNews';
-import MainPageCategories from './MainPageCategories';
-import LastVideos from './LastVideos';
+import MyContext from '../../context';
+import TopNews from './News/TopNews';
+import MiniNews from './News/MiniNews';
+import MainPageCategories from './News/MainPageCategories';
+import LastVideos from '../other/LastVideos';
 
 
 function MainPage() {

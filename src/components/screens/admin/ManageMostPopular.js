@@ -1,7 +1,7 @@
 import React from 'react'
 import { Fade } from '@mui/material';
 import { BsSearch } from "react-icons/bs";
-import LazyImage from './LazyImage';
+import LazyImage from '../../other/LazyImage';
 import { MdRestartAlt } from "react-icons/md";
 
 export default function ManageMostPopular() {
