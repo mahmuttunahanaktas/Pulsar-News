@@ -55,7 +55,7 @@ function Navbar() {
         <div className="navbar-items-div d-flex align-items-center gap-2">
           <button onClick={(e) => handleAuth()} className="btn btn-light border d-flex align-items-center">
             <RiAccountCircleLine className='mr-2 text-xl' />
-            <p className="m-0 font-sans">{islogin ? "Çıkış Yap" : "Giriş Yap"}</p>
+            <p className="m-0 font-sans">{islogin ? "Sign Out" : "Sign In"}</p>
           </button>
           <button onClick={togglePopup} className='p-2 rounded hover:bg-gray-200 transition border'>
             <IoSettingsSharp className='text-xl' />
