@@ -9,7 +9,7 @@ function CategoriesBar() {
     return (
         <section className='w-auto' >
             <div style={{ width: '100%', height: '10px', borderTop: '2px solid black', borderBottom: '2px solid black' }}></div>
-           
+    
             <div className='category-item' onClick={() => handleCategoryPage('World',navigate)}>
                 <p>World</p>
                 <IoIosArrowForward />

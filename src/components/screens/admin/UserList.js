@@ -3,11 +3,17 @@ import { Fade } from '@mui/material';
 import { FaUserShield, } from "react-icons/fa";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
+import { usePopup } from '../../../context';
 
 function UserList() {
-    const [users, setUsers] = useState([]);
+     const { deletepopupIsOppen, deletePopup } = usePopup();
+      if (!deletepopupIsOppen) return null;
 
+
+    const [users, setUsers] = useState([]);
     const handleDeleteUser = async (email) => {
+
+        deletePopup();
         try {
             const response = await fetch(`http://localhost:3000/user/${email}`, {
                 method: "DELETE",
@@ -38,14 +44,12 @@ function UserList() {
 
             const data = await response.json();
             setUsers(data); // Gelen veriyi state'e kaydet
-
         }
         catch (error) {
             console.error('Error: ', error);
         }
     }
     useEffect(() => {
-
         fetchUsers();
     }, []);
     return (
@@ -68,7 +72,6 @@ function UserList() {
                                                 <div>
                                                     <p className='font-sans font-lg m-0 p-0'>{user.name}</p>
                                                     <p className='font-sans font-xs m-0 p-0'> -  {user.email}</p>
-
                                                 </div>
                                             </div>
                                             <button onClick={(e) => handleDeleteUser(user.email)}
@@ -81,12 +84,10 @@ function UserList() {
                                     ))
                                 }
                             </ul>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </Fade>
     )
 } export default UserList;

@@ -8,14 +8,13 @@ import { IoSettingsSharp } from "react-icons/io5";
 import { Fade } from '@mui/material';
 
 
-export default function Settings() {
+function Settings() {
   const { isDarkMode, setIsDarkMode, changeHandleTheme } = useContext(MyContext);
   const { popupIsOppen, togglePopup } = usePopup();
   if (!popupIsOppen) return null;
 
   return (
     <Fade in={true} timeout={500}>
-
       <div className='popup-overlay'>
         <div className='popup-content'>
           <div className='w-full flex justify-end'>
@@ -48,4 +47,4 @@ export default function Settings() {
       </div>
     </Fade>
   )
-}
+} export default Settings;

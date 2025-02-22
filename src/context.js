@@ -23,16 +23,16 @@ export const MyProvider = ({ children }) => {
 
     const handleGoToPageDetail = (new_link) => {
         window.open(new_link, "_blank");
-
     };
     
 
+   
+
     const [popupIsOppen, setPopupIsOppen] = useState(false);
-
     const togglePopup = () => setPopupIsOppen(!popupIsOppen)
+
+
     //temayı değiştirme kodunu contextimde hazır fonksiyon olarak saklıyorum
-
-
     const changeHandleTheme = () => {
         setIsDarkMode((prev) => !prev);
         document.body.classList.toggle("dark", !isDarkMode)
@@ -49,8 +49,15 @@ export const MyProvider = ({ children }) => {
     const [selectedComponent, setSelectedComponent] = useState('');
 
 
+
+     //delete popup'ı
+     const [deletepopupIsOppen, setDeletePopupIsOppen] = useState(false);
+     const deletePopup = () => setDeletePopupIsOppen(!deletepopupIsOppen)
+
+
+
     return (
-        <MyContext.Provider value={{selectedComponent,setSelectedComponent,KategoriSayfasindanGelenSection,setKategoriSayfasindanGelenSection, handleCategoryPage, changeHandleTheme, isDarkMode, setIsDarkMode, popupIsOppen, setPopupIsOppen, togglePopup, handleGoToPageDetail}}>
+        <MyContext.Provider value={{setDeletePopupIsOppen,deletepopupIsOppen,deletePopup,selectedComponent,setSelectedComponent,KategoriSayfasindanGelenSection,setKategoriSayfasindanGelenSection, handleCategoryPage, changeHandleTheme, isDarkMode, setIsDarkMode, popupIsOppen, setPopupIsOppen, togglePopup, handleGoToPageDetail}}>
             {children}
         </MyContext.Provider>
     );
