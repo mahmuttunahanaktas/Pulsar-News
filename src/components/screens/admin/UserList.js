@@ -6,14 +6,10 @@ import { FaUser } from "react-icons/fa";
 import { usePopup } from '../../../context';
 
 function UserList() {
-     const { deletepopupIsOppen, deletePopup } = usePopup();
-      if (!deletepopupIsOppen) return null;
-
+    const { deletePopup } = usePopup();
 
     const [users, setUsers] = useState([]);
     const handleDeleteUser = async (email) => {
-
-        deletePopup();
         try {
             const response = await fetch(`http://localhost:3000/user/${email}`, {
                 method: "DELETE",
@@ -52,6 +48,8 @@ function UserList() {
     useEffect(() => {
         fetchUsers();
     }, []);
+
+
     return (
         <Fade in={true} timeout={500}>
             <div className='flex flex-col'>
@@ -74,7 +72,7 @@ function UserList() {
                                                     <p className='font-sans font-xs m-0 p-0'> -  {user.email}</p>
                                                 </div>
                                             </div>
-                                            <button onClick={(e) => handleDeleteUser(user.email)}
+                                            <button onClick={deletePopup}
                                                 className="btn btn-light border d-flex align-items-center gap-2"
                                                 style={{ background: 'red' }}>
                                                 <MdOutlineDeleteOutline className='text-xl text-white' />
