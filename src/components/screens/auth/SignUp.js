@@ -149,11 +149,9 @@ function SignUp() {
           <div className='my-4 w-64 flex flex-col gap-2'>
             <input placeholder='Confirm Password' onChange={(e) => setVpassword(e.target.value)} value={vpassword} type='password' className='border-1 border-gray-600 p-2 text-md rounded'></input>
           </div>
-
           <div className='w-100 flex justify-center items-center'>
             <button onClick={(e) => handleSignUp()} className='baslik1 m-4  px-5 py-2 rounded text-center shadow-sm text-white text-lg'>{loading ? <CircularProgress color="secondary" /> : "Create Account"}</button>
           </div>
-
           <p className="text-md text-center lex-wrap font-bold">
             You have already an account? <br />
             <span onClick={handleGoToSignIn} className="text-sky-500 hover:text-green-600 cursor-pointer">Click to Sign in.</span>

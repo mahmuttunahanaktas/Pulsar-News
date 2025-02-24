@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +7,34 @@
 }
 body{
   transition: 0.3s;
+}
+
+
+.popup-overlay {
+  position: fixed; /* Sayfada kaydırmaktan bağımsız olması için */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Koyu arka plan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Tüm sayfadan üstte olmasını sağlıyoruz */
+}
+.popup-content {
+  background-color: rgb(240, 240, 240);
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%; /* Genişliği responsive hale getirebiliriz */
+  max-width: 500px; /* Maksimum genişlik */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1200; /* Tüm sayfadan üstte olmasını sağlıyoruz */
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
 }
 
 .main_div {
@@ -516,32 +542,8 @@ background-color:#424242 ;
   transform: translateX(24px);
   /* Topu sağa taşı */
 }
-.popup-overlay {
-  position: fixed; /* Sayfada kaydırmaktan bağımsız olması için */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Koyu arka plan */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Tüm sayfadan üstte olmasını sağlıyoruz */
-}
-.popup-content {
-  background-color: rgb(240, 240, 240);
-  padding: 20px;
-  border-radius: 8px;
-  width: 90%; /* Genişliği responsive hale getirebiliriz */
-  max-width: 500px; /* Maksimum genişlik */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  position: relative;
-  z-index: 1200; /* Tüm sayfadan üstte olmasını sağlıyoruz */
-  display: flex;
-  flex-direction: column;
-  justify-content:center;
-  align-items: center;
-}
+
+
 .roboto-normal {
   font-family: "Roboto", serif;
   font-weight: 400;

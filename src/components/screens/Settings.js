@@ -7,7 +7,6 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { IoSettingsSharp } from "react-icons/io5";
 import { Fade } from '@mui/material';
 
-
 function Settings() {
   const { isDarkMode, setIsDarkMode, changeHandleTheme } = useContext(MyContext);
   const { popupIsOppen, togglePopup } = usePopup();

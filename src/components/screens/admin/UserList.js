@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { Fade } from '@mui/material';
-import { FaUserShield, } from "react-icons/fa";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
-import { usePopup } from '../../../context';
+import { TbRefresh } from "react-icons/tb";
 
 function UserList() {
-    const { deletePopup } = usePopup();
-
     const [users, setUsers] = useState([]);
     const handleDeleteUser = async (email) => {
-        try {
-            const response = await fetch(`http://localhost:3000/user/${email}`, {
-                method: "DELETE",
+        const isConfirmed = window.confirm("Are you sure you want to delete?");
+        if (isConfirmed) {
+            try {
+                const response = await fetch(`http://localhost:3000/user/${email}`, {
+                    method: "DELETE",
 
-            });
-            if (!response.ok) {
-                throw new Error("Kullanıcı silinirken hata oluştu!");
+                });
+                if (!response.ok) {
+                    throw new Error("Kullanıcı silinirken hata oluştu!");
+                }
+                fetchUsers();
+                return console.log("Kullanıcı Başarıyla Silinid!");
+            } catch (error) {
+                console.error(error);
             }
-            fetchUsers();
-            return console.log("Kullanıcı Başarıyla Silinid!");
-        } catch (error) {
-            console.error(error);
         }
 
     };
@@ -49,6 +49,10 @@ function UserList() {
         fetchUsers();
     }, []);
 
+    const handleRefresh = async () => {
+        fetchUsers();
+    }
+
 
     return (
         <Fade in={true} timeout={500}>
@@ -60,7 +64,13 @@ function UserList() {
                     <p className='font-sans text-center'>You can manage users from here.</p>
                     <div className='w-full h-full rounded flex flex-col items-center p-4'>
                         <div className='rounded-2xl border-1 border-black h-auto w-full m-3 p-3'>
-                            <div className='h-auto w-full my-4 p-1' style={{ borderBottom: '1px solid gray' }}></div>
+                            <div className='w-full my-4 p-1' style={{ borderBottom: '1px solid gray' }}>
+                                <button onClick={(e) => handleRefresh()}
+                                    className="btn btn-light border d-flex align-items-center ml-5 mb-2">
+                                    <TbRefresh className='text-xl' />
+                                    <p className="m-0 font-sans text-lg">Refresh</p>
+                                </button>
+                            </div>
                             <ul className='max-h-80 overflow-y-scroll'>
                                 {
                                     users.map((user) => (
@@ -72,7 +82,7 @@ function UserList() {
                                                     <p className='font-sans font-xs m-0 p-0'> -  {user.email}</p>
                                                 </div>
                                             </div>
-                                            <button onClick={deletePopup}
+                                            <button onClick={(e) => handleDeleteUser(user.email)}
                                                 className="btn btn-light border d-flex align-items-center gap-2"
                                                 style={{ background: 'red' }}>
                                                 <MdOutlineDeleteOutline className='text-xl text-white' />

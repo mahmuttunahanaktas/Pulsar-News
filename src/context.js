@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-//context'i oluşturalım.
 const MyContext = createContext();
 export const usePopup = () => useContext(MyContext);
 
@@ -24,13 +23,6 @@ export const MyProvider = ({ children }) => {
     const handleGoToPageDetail = (new_link) => {
         window.open(new_link, "_blank");
     };
-    
-
-   
-
-    const [popupIsOppen, setPopupIsOppen] = useState(false);
-    const togglePopup = () => setPopupIsOppen(!popupIsOppen)
-
 
     //temayı değiştirme kodunu contextimde hazır fonksiyon olarak saklıyorum
     const changeHandleTheme = () => {
@@ -42,22 +34,16 @@ export const MyProvider = ({ children }) => {
     const handleCategoryPage = (category, navigateElement) => {
         navigateElement(`/category/${category.toLowerCase()}`);
     };
-
-
-    const [KategoriSayfasindanGelenSection,setKategoriSayfasindanGelenSection]=useState("bos");
-
+    const [KategoriSayfasindanGelenSection, setKategoriSayfasindanGelenSection] = useState("bos");
     const [selectedComponent, setSelectedComponent] = useState('');
 
+    //Popup kodlarımız
+    const [popupIsOppen, setPopupIsOppen] = useState(false);
+    const togglePopup = () => setPopupIsOppen(!popupIsOppen);
 
-
-     //delete popup'ı
-     const [deletepopupIsOppen, setDeletePopupIsOppen] = useState(false);
-     const deletePopup = () => setDeletePopupIsOppen(!deletepopupIsOppen)
-
-
-
+ 
     return (
-        <MyContext.Provider value={{setDeletePopupIsOppen,deletepopupIsOppen,deletePopup,selectedComponent,setSelectedComponent,KategoriSayfasindanGelenSection,setKategoriSayfasindanGelenSection, handleCategoryPage, changeHandleTheme, isDarkMode, setIsDarkMode, popupIsOppen, setPopupIsOppen, togglePopup, handleGoToPageDetail}}>
+        <MyContext.Provider value={{popupIsOppen, setPopupIsOppen, togglePopup, selectedComponent, setSelectedComponent, KategoriSayfasindanGelenSection, setKategoriSayfasindanGelenSection, handleCategoryPage, changeHandleTheme, isDarkMode, setIsDarkMode, handleGoToPageDetail }}>
             {children}
         </MyContext.Provider>
     );
