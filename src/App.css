@@ -309,13 +309,7 @@ body{
   color: gray;
 }
 
-.main-page-categories {
-  display: flex;
-  flex: wrap;
-  justify-content: center;
 
-
-}
 
 .navbar {
   border-bottom: 1px solid gainsboro;

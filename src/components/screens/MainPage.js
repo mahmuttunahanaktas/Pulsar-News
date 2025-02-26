@@ -4,6 +4,7 @@ import TopNews from './News/TopNews';
 import MiniNews from './News/MiniNews';
 import MainPageCategories from './News/MainPageCategories';
 import LastVideos from '../other/LastVideos';
+import Footer from '../other/Footer';
 
 
 function MainPage() {
@@ -22,7 +23,9 @@ function MainPage() {
       </section>
       <section className='latest-videos-section w-100 d-flex justify-content-center mt-5' style={{ background: 'black', color: 'white' }}>
         <LastVideos></LastVideos>
-
+      </section>
+      <section className='latest-videos-section w-100 d-flex justify-content-center' style={{ background: 'black', color: 'white' }}>
+        <Footer/>
       </section>
     </div>
   );

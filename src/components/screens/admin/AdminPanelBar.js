@@ -24,7 +24,7 @@ function AdminPanelBar() {
            
             <button onClick={(e)=>setSelectedComponent("AccountSettings")} className='rounded-xl hover:bg-gray-100 flex items-center gap-2 mx-4 my-1 py-3 px-1'>
                 <RiAdminLine className='text-3xl' />
-                <p className='font-sans  text-lg m-0 p-0'>Account Settings</p>
+                <p className='font-sans  text-lg m-0 p-0'>Admin Operations</p>
             </button>
 
             <button onClick={(e)=>setSelectedComponent("EditNews")} className='rounded-xl hover:bg-gray-100 flex items-center gap-2 mx-4 my-1 py-3 px-1'>
