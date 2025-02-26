@@ -8,16 +8,21 @@ function MiniNews() {
     const [news, setNews] = useState([]);
     const [loading, setLoading] = useState(true);// loading durumu için.
     const [error, setError] = useState(null);// api'da hata olursa göstertmek için.
+    const [requestCount,setRequestCount]=useState(0);
     const API_URL = `https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json?api-key=jragcoZD3twCzmu2uJV6ANvU8usEAyTx`;
     //Haberleri API ile çekiyoruz
 
     useEffect(() => {
+        if (requestCount >= 5) return; // 5'ten fazla istek yapmayı engelle
+
         const fetchNews = async () => {
             try {
                 const response = await fetch(API_URL);
                 const data = await response.json();
                 console.log(data.results); // API'dan dönen veriyi incelemek için
                 setNews(data.results);
+                setRequestCount((prev) => prev + 1); // İstek sayısını artır
+
             } catch (err) {
                 console.error("Hata Detayı:", err);
                 setError(err.message);
@@ -26,7 +31,7 @@ function MiniNews() {
             }
         };
         fetchNews();
-    }, []);
+    }, [requestCount]);
 
   if (loading) return <div className='w-full h-screen flex justify-center items-center'><CircularProgress color="secondary" /></div>
     if (error) return <p>HATA: {error}</p>

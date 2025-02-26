@@ -13,11 +13,15 @@ function CategoryPage() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const { section } = useParams();
+  const [requestCount, setRequestCount] = useState(0);
 
-  const {KategoriSayfasindanGelenSection,setKategoriSayfasindanGelenSection}=useContext(MyContext);
+
+  const { KategoriSayfasindanGelenSection, setKategoriSayfasindanGelenSection } = useContext(MyContext);
 
   const API_URL = `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=jragcoZD3twCzmu2uJV6ANvU8usEAyTx`;
   useEffect(() => {
+    if (requestCount >= 5) return; // 5'ten fazla istek yapmayı engelle
+
     const fetchNews = async () => {
       try {
         const response = await fetch(API_URL);
@@ -26,6 +30,8 @@ function CategoryPage() {
         }
         const data = await response.json();
         setNews(data.results)
+        setRequestCount((prev) => prev + 1); // İstek sayısını artır
+
       }
       catch (err) {
         console.log("Hata Detayı ---- > ", err);
@@ -37,11 +43,11 @@ function CategoryPage() {
     };
     fetchNews();
 
-  }, [section]);
+  }, [section, requestCount]);
   function yazdir(veri, theNew) {
     console.log("İŞTE LİNK --------------------> " + veri);
     setKategoriSayfasindanGelenSection(theNew.section.charAt(0).toUpperCase() + section.slice(1));
-    console.log("SECTİON BİLGİSİ ****************** "+theNew.section);
+    console.log("SECTİON BİLGİSİ ****************** " + theNew.section);
     navigate(`/news/${encodeURIComponent(theNew.uri)}/nyt`);
 
   }

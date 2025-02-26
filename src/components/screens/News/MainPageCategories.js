@@ -6,9 +6,8 @@ function MainPageCategories() {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-
-    const API_KEY = "jagcoZD3twCzmu2uJV6ANvU8usEAyTx";
-
+    const [requestCount, setRequestCount] = useState(0);
+    const API_KEY = "jragcoZD3twCzmu2uJV6ANvU8usEAyTx";
     const sections = [
         "world",
         "us",
@@ -19,8 +18,10 @@ function MainPageCategories() {
         "arts",
         "opinion",
     ];
-
+    
     useEffect(() => {
+        if (requestCount >= 1) return; // 5'ten fazla istek yapmayı engelle
+
         const fetchCategories = async () => {
             try {
                 const promises = sections.map(async (section) => {
@@ -31,6 +32,8 @@ function MainPageCategories() {
                         throw new Error(`Error fetching ${section}: ${response.status}`);
                     }
                     const data = await response.json();
+                    setRequestCount((prev) => prev + 1); // İstek sayısını artır
+
                     return {
                         section,
                         img: data.results[0]?.multimedia?.[1]?.url || "/placeholder.jpg",
@@ -50,14 +53,14 @@ function MainPageCategories() {
             }
         };
         fetchCategories();
-    }, []);
+    }, [requestCount]);
 
     if (loading) return <p>Yükleniyor...</p>;
     if (error) return <p>Veriler alınamadı. Lütfen tekrar deneyin.</p>;
 
     return (
         <div className='bg-gray-100 w-full h-auto p-5 m-5'>
-            <div style={{width: '100%', height: '10px', borderTop: '2px solid black', borderBottom: '2px solid black' }}></div>
+            <div style={{ width: '100%', height: '10px', borderTop: '2px solid black', borderBottom: '2px solid black' }}></div>
             <div className="flex flex-wrap justify-center">
                 {categories.map((category, index) => (
                     <div key={index} className='categories-item'>
@@ -85,6 +88,4 @@ function MainPageCategories() {
         </div>
     );
 }
-
-
 export default MainPageCategories;

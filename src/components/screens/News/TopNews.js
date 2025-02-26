@@ -28,7 +28,8 @@ function TopNews() {
         console.error("Hata Detayı:", err);
         setError(err.message);
         setNews([]);
-      } finally {
+      }
+       finally {
         setLoading(false);
       }
     };
