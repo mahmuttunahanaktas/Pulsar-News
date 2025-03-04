@@ -18,6 +18,13 @@ function SignUp() {
   const [vpassword, setVpassword] = useState('');
   const [email, setEmail] = useState('');
 
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSignUp();
+    }
+  };
+
   const handleGoToSignIn = () => {
     navigate("/SignIn");
   };
@@ -56,7 +63,8 @@ function SignUp() {
   const handleSignUp = async () => {
     if (name === '' || email === '' || vpassword === '' || password === '') {
       setOpen(true)
-    } else {
+    } 
+    else {
       if (vpassword === password) {
         console.log(vpassword, password)
         setLoading(true);
@@ -76,12 +84,10 @@ function SignUp() {
           setSucces(true);
           setTimeout(() => setSucces(false), 3000);
           setTimeout(() => setLoading(false), 1000);
-
           setTimeout(() => handleGoToSignIn(), 3000);
 
-
-
-        } catch (error) {
+        } 
+        catch (error) {
           console.error('Register Error: ', error);
           //Girilen verilerde problem varsa
           setOpen(true)
@@ -90,17 +96,12 @@ function SignUp() {
           setTimeout(() => setShakeAnimation(false), 500);
           setTimeout(() => setShakeAnimation2(false), 500);
           setLoading(false)
-
         }
-
       } else {
         setOpen(true);
       }
-
     }
-
   };
-
 
   const handleCloseSuccess = () => {
     setSucces(false);
@@ -130,24 +131,24 @@ function SignUp() {
         <div className="bg-white border shadow-xl rounded-2xl m-3 px-20 py-5 block">
           <div className='my-4 w-64 flex flex-col gap-2'>
             <span className='text-xl'>Full Name*</span>
-            <input onChange={(e) => setName(e.target.value)} type='text' value={name} className='font-sans p-2 text-md rounded border-1 border-gray-600'></input>
+            <input onKeyDown={handleKeyPress}  onChange={(e) => setName(e.target.value)} type='text' value={name} className='font-sans p-2 text-md rounded border-1 border-gray-600'></input>
           </div>
 
           <div className='my-4 w-64 flex flex-col gap-2'>
             <StyledDiv shakeAnimation={shakeAnimation}>
               <span className='text-xl'>Email Address*</span>
             </StyledDiv>
-            <input onChange={(e) => setEmail(e.target.value)} value={email} type='email' className='font-sans border-1 border-gray-600 p-2 text-md rounded'></input>
+            <input onKeyDown={handleKeyPress}  onChange={(e) => setEmail(e.target.value)} value={email} type='email' className='font-sans border-1 border-gray-600 p-2 text-md rounded'></input>
           </div>
 
           <div className='my-4 w-64 flex flex-col gap-2'>
             <StyledDiv2 shakeAnimation2={shakeAnimation2}>
               <span className='text-xl'>Password*</span>
             </StyledDiv2>
-            <input placeholder='Create a stronger password' onChange={(e) => setPassword(e.target.value)} value={password} type='password' className='border-1 border-gray-600 p-2 text-md rounded'></input>
+            <input onKeyDown={handleKeyPress}  placeholder='Create a stronger password' onChange={(e) => setPassword(e.target.value)} value={password} type='password' className='border-1 border-gray-600 p-2 text-md rounded'></input>
           </div>
           <div className='my-4 w-64 flex flex-col gap-2'>
-            <input placeholder='Confirm Password' onChange={(e) => setVpassword(e.target.value)} value={vpassword} type='password' className='border-1 border-gray-600 p-2 text-md rounded'></input>
+            <input onKeyDown={handleKeyPress}  placeholder='Confirm Password' onChange={(e) => setVpassword(e.target.value)} value={vpassword} type='password' className='border-1 border-gray-600 p-2 text-md rounded'></input>
           </div>
           <div className='w-100 flex justify-center items-center'>
             <button onClick={(e) => handleSignUp()} className='baslik1 m-4  px-5 py-2 rounded text-center shadow-sm text-white text-lg'>{loading ? <CircularProgress color="secondary" /> : "Create Account"}</button>

@@ -6,8 +6,6 @@ import { Fade } from '@mui/material';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 
-
-
 function SignIn() {
     const [succes, setSucces] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -17,6 +15,13 @@ function SignIn() {
     const [email, setEmail] = useState('');
     const [shakeAnimation, setShakeAnimation] = useState(false);
     const [shakeAnimation2, setShakeAnimation2] = useState(false);
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSignIn();
+        }
+      };
+    
 
     // Sallama animasyonu
     const shake = keyframes`
@@ -74,12 +79,12 @@ function SignIn() {
                     },
                     body: JSON.stringify({ email, password }),
                 });
-                if(!response.ok){
+                if (!response.ok) {
                     throw new Error('Giriş Başarısız');
                 }
-                const data=await response.json();
-                console.log("GİRİŞ BAŞARILI",data);
-                localStorage.setItem('jwt',data.access_token);
+                const data = await response.json();
+                console.log("GİRİŞ BAŞARILI", data);
+                localStorage.setItem('jwt', data.access_token);
                 setSucces(true);
                 setTimeout(() => setSucces(false), 3000);
                 setTimeout(() => setLoading(false), 1000);
@@ -133,16 +138,16 @@ function SignIn() {
                         <StyledDiv shakeAnimation={shakeAnimation}>
                             <span className='text-xl'>Email Adress*</span>
                         </StyledDiv>
-                        <input onChange={(e) => setEmail(e.target.value)} value={email} type='email' className='font-sans p-2 text-md rounded border'></input>
+                        <input onKeyDown={handleKeyPress}  onChange={(e) => setEmail(e.target.value)} value={email} type='email' className='font-sans p-2 text-md rounded border'></input>
                     </div>
 
 
 
                     <div className='my-4 w-64 flex flex-col gap-2'>
-                        <StyledDiv2 shakeAnimation2={shakeAnimation2}>
+                        <StyledDiv2  shakeAnimation2={shakeAnimation2}>
                             <span className='text-xl'>Password*</span>
                         </StyledDiv2>
-                        <input onChange={(e) => setPassword(e.target.value)} value={password} type='password' className='font-sans p-2 text-md rounded border'></input>
+                        <input onKeyDown={handleKeyPress}  onChange={(e) => setPassword(e.target.value)} value={password} type='password' className='font-sans p-2 text-md rounded border'></input>
                     </div>
 
                     <div className='w-100 flex justify-center items-center'>

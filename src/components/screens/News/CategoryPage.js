@@ -5,8 +5,6 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import MyContext from '../../../context';
 import LazyImage from '../../other/LazyImage';
-
-
 function CategoryPage() {
   const navigate = useNavigate();
   const [news, setNews] = useState([]);
@@ -14,10 +12,7 @@ function CategoryPage() {
   const [loading, setLoading] = useState(true);
   const { section } = useParams();
   const [requestCount, setRequestCount] = useState(0);
-
-
   const { KategoriSayfasindanGelenSection, setKategoriSayfasindanGelenSection } = useContext(MyContext);
-
   const API_URL = `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=jragcoZD3twCzmu2uJV6ANvU8usEAyTx`;
   useEffect(() => {
     if (requestCount >= 5) return; // 5'ten fazla istek yapmayı engelle
@@ -42,19 +37,15 @@ function CategoryPage() {
       }
     };
     fetchNews();
-
   }, [section, requestCount]);
   function yazdir(veri, theNew) {
     console.log("İŞTE LİNK --------------------> " + veri);
     setKategoriSayfasindanGelenSection(theNew.section.charAt(0).toUpperCase() + section.slice(1));
     console.log("SECTİON BİLGİSİ ****************** " + theNew.section);
     navigate(`/news/${encodeURIComponent(theNew.uri)}/nyt`);
-
   }
-
   if (loading) return <h1>Yükleniyor...</h1>
   if (error) return <p>HATA: {error}</p>
-
   return (
     <div className='container h-auto p-1' style={{ marginTop: '10%' }}>
       <div className='header-div w-100'>
@@ -70,7 +61,9 @@ function CategoryPage() {
                   <h5>{theNew.abstract}</h5>
                   <p className='fs-6 text-secondary'> - {theNew.byline}</p>
                 </div>
-                <LazyImage style={{ width: '33%' }} src={theNew.multimedia[0].url}>
+                <LazyImage style={{ width: '33%' }}
+                  src={theNew.multimedia?.[0]?.url || '/images/logoicon.jpg'}
+                >
                 </LazyImage>
               </div>
             ))

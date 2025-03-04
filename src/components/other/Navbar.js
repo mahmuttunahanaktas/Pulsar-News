@@ -14,18 +14,16 @@ function Navbar() {
     navigate("/");
   };
   const token = localStorage.getItem('jwt')
-
-
   const { togglePopup } = usePopup();
 
   const handleAuth = () => {
     if (islogin) {
       localStorage.removeItem('jwt');
       setIslogin(false);
+      navigate("/")
 
     } else {
       navigate("/SignIn")
-
     }
   }
   useEffect(() => {

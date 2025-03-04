@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import AdminPanelBar from './AdminPanelBar.js'
 import AdminAccountSettings from './AdminAccountSettings';
 import MyContext from '../../../context.js';
@@ -9,7 +9,75 @@ import { Fade } from '@mui/material';
 import TopStoriesCategories from './TopStoriesCategories.js';
 import EditCategories from './EditCategories.js';
 import UserList from './UserList.js';
+import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
+
+
+
 function AdminPanel() {
+    const navigate = useNavigate();
+
+    //jwt'nin içerisindeki rolü kontrol etme fonskiyonumuz.
+    const checkAdmins=()=>{
+        const token=localStorage.getItem("jwt");
+        if (!token) {
+            alert('Yetkisiz erişim: Giriş yapmanız gerekiyor!');
+            navigate('/SignIn'); // Giriş sayfasına yönlendir
+            return;
+        }
+        try{
+            const decoded=jwtDecode(token);
+            if(decoded.role!=="ADMIN"){
+                console.log('Yetkisiz erişim: Admin değilsiniz!');
+                navigate('/');
+            }
+
+        }catch(error){
+            console.error('Token çözümleme hatası:', error);
+            navigate('/SignIn');
+        }
+
+    };
+    useEffect(()=>{
+        checkAdmins();
+    },[]);
+
+
+
+    //adminpanele istek atma kodlarımız.
+    useEffect(()=>{
+
+        const fetchAdminPanel = async () => {
+            try{
+                const token=localStorage.getItem("jwt");
+                const response = await fetch('http://localhost:3000/adminpanel',{
+                    method:'GET',
+                    headers:{
+                        Authorization:`Bearer ${token}`,
+
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error('Yetkisiz erişim veya hata oluştu');
+                }
+            } catch(error){
+                console.error('İstek hatası:', error);
+                navigate('/');
+            }
+
+        }
+
+
+
+
+        checkAdmins();
+        fetchAdminPanel();
+    },[]);
+
+
+
+
+
     const { selectedComponent, setSelectedComponent } = useContext(MyContext);
     //Seçilen butona göre component çağırıyoruz.
     const renderComponent = () => {
@@ -35,6 +103,7 @@ function AdminPanel() {
                 return <AdminAccountSettings />
         }
     };
+
     return (
         <Fade in={true} timeout={500}>
             <div className='flex justify-center bg-gray-100 h-screen w-full m-2 gap-2 mt-9'>
@@ -45,4 +114,5 @@ function AdminPanel() {
             </div>
         </Fade >
     )
+
 } export default AdminPanel;

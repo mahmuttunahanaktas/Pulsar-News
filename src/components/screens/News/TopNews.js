@@ -3,7 +3,6 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import LazyImage from '../../other/LazyImage';
 import { CircularProgress } from '@mui/material';
 
-
 function TopNews() {
   const navigate = useNavigate(); // useNavigate hook'u ile yönlendirme işlevi
   const [news, setNews] = useState([]);
@@ -15,7 +14,7 @@ function TopNews() {
 
   //Haberleri API ile çekiyoruz.
   useEffect(() => {
-    if (requestCount >= 5) return; // 5'ten fazla istek yapmayı engelle
+    if (requestCount >= 1) return; // 5'ten fazla istek yapmayı engelle
 
     const fetchNews = async () => {
       try {
@@ -36,7 +35,6 @@ function TopNews() {
 
     fetchNews();
   }, [requestCount])
-
 
   if (loading) return <div className='w-full h-screen flex justify-center items-center'><CircularProgress color="secondary" /></div>
   if (error) return <p>HATA: {error}</p>
