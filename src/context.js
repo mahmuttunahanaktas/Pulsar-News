@@ -33,6 +33,7 @@ export const MyProvider = ({ children }) => {
 
     const handleCategoryPage = (category, navigateElement) => {
         navigateElement(`/category/${category.toLowerCase()}`);
+        window.location.reload();
     };
     const [KategoriSayfasindanGelenSection, setKategoriSayfasindanGelenSection] = useState("bos");
     const [selectedComponent, setSelectedComponent] = useState('');

@@ -23,6 +23,7 @@ function AdminPanel() {
         if (!token) {
             alert('Yetkisiz erişim: Giriş yapmanız gerekiyor!');
             navigate('/SignIn'); // Giriş sayfasına yönlendir
+            window.location.reload();
             return;
         }
         try{
@@ -30,6 +31,8 @@ function AdminPanel() {
             if(decoded.role!=="ADMIN"){
                 console.log('Yetkisiz erişim: Admin değilsiniz!');
                 navigate('/');
+                window.location.reload();
+
             }
 
         }catch(error){
