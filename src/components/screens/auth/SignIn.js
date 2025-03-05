@@ -20,8 +20,8 @@ function SignIn() {
         if (e.key === 'Enter') {
             handleSignIn();
         }
-      };
-    
+    };
+
 
     // Sallama animasyonu
     const shake = keyframes`
@@ -84,7 +84,11 @@ function SignIn() {
                 }
                 const data = await response.json();
                 console.log("GİRİŞ BAŞARILI", data);
-                localStorage.setItem('jwt', data.access_token);
+                console.log("Tam Sunucu Yanıtı:", data);
+                console.log("Access Token:", data.data.access_token);
+                
+                localStorage.setItem('jwt', data.data.access_token);
+                
                 setSucces(true);
                 setTimeout(() => setSucces(false), 3000);
                 setTimeout(() => setLoading(false), 1000);
@@ -138,16 +142,16 @@ function SignIn() {
                         <StyledDiv shakeAnimation={shakeAnimation}>
                             <span className='text-xl'>Email Adress*</span>
                         </StyledDiv>
-                        <input onKeyDown={handleKeyPress}  onChange={(e) => setEmail(e.target.value)} value={email} type='email' className='font-sans p-2 text-md rounded border'></input>
+                        <input onKeyDown={handleKeyPress} onChange={(e) => setEmail(e.target.value)} value={email} type='email' className='font-sans p-2 text-md rounded border'></input>
                     </div>
 
 
 
                     <div className='my-4 w-64 flex flex-col gap-2'>
-                        <StyledDiv2  shakeAnimation2={shakeAnimation2}>
+                        <StyledDiv2 shakeAnimation2={shakeAnimation2}>
                             <span className='text-xl'>Password*</span>
                         </StyledDiv2>
-                        <input onKeyDown={handleKeyPress}  onChange={(e) => setPassword(e.target.value)} value={password} type='password' className='font-sans p-2 text-md rounded border'></input>
+                        <input onKeyDown={handleKeyPress} onChange={(e) => setPassword(e.target.value)} value={password} type='password' className='font-sans p-2 text-md rounded border'></input>
                     </div>
 
                     <div className='w-100 flex justify-center items-center'>

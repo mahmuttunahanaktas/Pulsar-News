@@ -10,76 +10,66 @@ import TopStoriesCategories from './TopStoriesCategories.js';
 import EditCategories from './EditCategories.js';
 import UserList from './UserList.js';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
-
+import { jwtDecode}  from 'jwt-decode';
 
 
 function AdminPanel() {
     const navigate = useNavigate();
-
     //jwt'nin içerisindeki rolü kontrol etme fonskiyonumuz.
-    const checkAdmins=()=>{
-        const token=localStorage.getItem("jwt");
+    const checkAdmins = () => {
+        const token = localStorage.getItem("jwt");
+        console.log('Token:', token); // Hataları izlemek için
+
         if (!token) {
+            
             alert('Yetkisiz erişim: Giriş yapmanız gerekiyor!');
+            
             navigate('/SignIn'); // Giriş sayfasına yönlendir
             window.location.reload();
             return;
         }
-        try{
-            const decoded=jwtDecode(token);
-            if(decoded.role!=="ADMIN"){
+        try {
+            const decoded = jwtDecode(token);
+
+
+            if (decoded.role !== "ADMIN") {
                 console.log('Yetkisiz erişim: Admin değilsiniz!');
                 navigate('/');
                 window.location.reload();
 
             }
 
-        }catch(error){
+        } catch (error) {
             console.error('Token çözümleme hatası:', error);
             navigate('/SignIn');
         }
 
     };
-    useEffect(()=>{
-        checkAdmins();
-    },[]);
+    const fetchAdminPanel = async () => {
+        try {
+            const token = localStorage.getItem("jwt");
+            const response = await fetch('http://localhost:3000/adminpanel', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
 
-
-
-    //adminpanele istek atma kodlarımız.
-    useEffect(()=>{
-
-        const fetchAdminPanel = async () => {
-            try{
-                const token=localStorage.getItem("jwt");
-                const response = await fetch('http://localhost:3000/adminpanel',{
-                    method:'GET',
-                    headers:{
-                        Authorization:`Bearer ${token}`,
-
-                    },
-                });
-                if (!response.ok) {
-                    throw new Error('Yetkisiz erişim veya hata oluştu');
-                }
-            } catch(error){
-                console.error('İstek hatası:', error);
-                navigate('/');
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Yetkisiz erişim veya hata oluştu');
             }
-
+        } catch (error) {
+            console.error('İstek hatası:', error);
+            navigate('/');
         }
 
-
-
-
+    }
+    useEffect(() => {
         checkAdmins();
+        
         fetchAdminPanel();
-    },[]);
-
-
-
-
+        
+    }, []);
 
     const { selectedComponent, setSelectedComponent } = useContext(MyContext);
     //Seçilen butona göre component çağırıyoruz.
@@ -106,7 +96,6 @@ function AdminPanel() {
                 return <AdminAccountSettings />
         }
     };
-
     return (
         <Fade in={true} timeout={500}>
             <div className='flex justify-center bg-gray-100 h-screen w-full m-2 gap-2 mt-9'>
@@ -117,5 +106,4 @@ function AdminPanel() {
             </div>
         </Fade >
     )
-
 } export default AdminPanel;

@@ -13,7 +13,6 @@ import { Snackbar, Alert } from '@mui/material';
 import { jwtDecode } from 'jwt-decode';
 import { CircularProgress } from '@mui/material';
 
-
 function AdminAccountSettings() {
   const [admins, setAdmins] = useState([]);
   const [loading, setLoading] = useState(false);
