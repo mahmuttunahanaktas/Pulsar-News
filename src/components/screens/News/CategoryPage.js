@@ -5,6 +5,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import MyContext from '../../../context';
 import LazyImage from '../../other/LazyImage';
+
 function CategoryPage() {
   const navigate = useNavigate();
   const [news, setNews] = useState([]);
@@ -14,6 +15,7 @@ function CategoryPage() {
   const [requestCount, setRequestCount] = useState(0);
   const { KategoriSayfasindanGelenSection, setKategoriSayfasindanGelenSection } = useContext(MyContext);
   const API_URL = `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=jragcoZD3twCzmu2uJV6ANvU8usEAyTx`;
+ 
   useEffect(() => {
     if (requestCount >= 5) return; // 5'ten fazla istek yapmayı engelle
 
@@ -44,8 +46,8 @@ function CategoryPage() {
     console.log("SECTİON BİLGİSİ ****************** " + theNew.section);
     navigate(`/news/${encodeURIComponent(theNew.uri)}/nyt`);
   }
-  if (loading) return <h1>Yükleniyor...</h1>
-  if (error) return <p>HATA: {error}</p>
+  if (loading) return <h1 className=' h-screen w-full'>Yükleniyor...</h1>
+  if (error) return <p className='h-screen w-full'>HATA: {error}</p>
   return (
     <div className='container h-auto p-1' style={{ marginTop: '10%' }}>
       <div className='header-div w-100'>

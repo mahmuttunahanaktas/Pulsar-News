@@ -8,10 +8,9 @@ function MiniNews() {
     const [news, setNews] = useState([]);
     const [loading, setLoading] = useState(true);// loading durumu için.
     const [error, setError] = useState(null);// api'da hata olursa göstertmek için.
-    const [requestCount,setRequestCount]=useState(0);
+    const [requestCount, setRequestCount] = useState(0);
     const API_URL = `https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json?api-key=jragcoZD3twCzmu2uJV6ANvU8usEAyTx`;
     //Haberleri API ile çekiyoruz
-
     useEffect(() => {
         if (requestCount >= 5) return; // 5'ten fazla istek yapmayı engelle
 
@@ -33,12 +32,11 @@ function MiniNews() {
         fetchNews();
     }, [requestCount]);
 
-  if (loading) return <div className='w-full h-screen flex justify-center items-center'><CircularProgress color="secondary" /></div>
+    if (loading) return <div className='w-full h-screen flex justify-center items-center'><CircularProgress color="secondary" /></div>
     if (error) return <p>HATA: {error}</p>
     return (
         <div className='justify-contet-center'>
             <h2 style={{ borderBottom: '2px solid black', textAlign: 'center', fontWeight: 'bold' }}>Most Popular</h2>
-
             <ul>
                 {
                     news.map((item, index) => (

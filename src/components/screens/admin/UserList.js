@@ -3,6 +3,7 @@ import { Fade } from '@mui/material';
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { TbRefresh } from "react-icons/tb";
+import axios from 'axios';
 
 function UserList() {
     const [users, setUsers] = useState([]);
@@ -27,22 +28,15 @@ function UserList() {
     };
     const fetchUsers = async () => {
         try {
-            const response = await fetch("http://localhost:3000/user", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
+            const response = await axios.get("http://localhost:3000/user");
 
-            if (!response.ok) {
-                throw new Error("Kullanıcıları çekerken hata oluştu!");
-            }
-
-            const data = await response.json();
-            setUsers(data); // Gelen veriyi state'e kaydet
+            if (response.data && response.data.data && Array.isArray(response.data.data)) {
+                setUsers(response.data.data);
+            }else{}
         }
         catch (error) {
             console.error('Error: ', error);
+            setUsers([]);
         }
     }
     useEffect(() => {

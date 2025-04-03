@@ -3,7 +3,9 @@ import { useParams } from 'react-router-dom';
 import MyContext from '../../../context';
 import { CiLocationArrow1 } from "react-icons/ci";
 import CategoriesBar from './CategoriesBar';
+
 function MostPopularDetail() {
+
   const { uri, source } = useParams();
   const [actualNew, setActualNew] = useState(null);
   const [error, setError] = useState(false);
@@ -11,6 +13,8 @@ function MostPopularDetail() {
   const { handleGoToPageDetail, KategoriSayfasindanGelenSection, setKategoriSayfasindanGelenSection } = useContext(MyContext);
   const [actualSection, setActualSection] = useState("home");
   //farklı 2 api'den veri çekitğim için resimlerinin hücreleri de farklı olduğundan resim için dinamik bir fonsksiyon aşşağıda bulunmaktadır.
+ 
+ 
   const getImageSrc = () => {
     if (actualNew?.media?.[0] || actualNew?.multimedia?.[0]) {
       if (source === 'nyt') {
@@ -32,6 +36,7 @@ function MostPopularDetail() {
     }
     return actualNew.title; // Her durumda kullanılacak yedek resim
   }
+
   const getCopyright = () => {
     if (actualNew?.media?.[0] || actualNew?.multimedia?.[0]) {
       if (source === 'nyt') {
@@ -66,11 +71,6 @@ function MostPopularDetail() {
   }, [KategoriSayfasindanGelenSection, actualSection]);
 
   useEffect(() => {
-
-
-
-
-
     const MyApiKey = "jragcoZD3twCzmu2uJV6ANvU8usEAyTx";
     const apiUrl = source === 'nyt'
       ? `https://api.nytimes.com/svc/topstories/v2/${actualSection}.json?api-key=${MyApiKey}`
@@ -112,7 +112,7 @@ function MostPopularDetail() {
     return <p>Veri bulunamadı.</p>;
   }
   return (
-    <div className='container flex flex-row gap-5 mt-5 justify-between'>
+    <div className='container flex flex-row gap-5 mt-5 justify-between' style={{marginBottom:'25%'}}>
       <div className='container-content'>
         <h1 className='fw-bold mt-5'>{actualNew.title}</h1>
         <p className='mini_news_category'>
@@ -137,7 +137,7 @@ function MostPopularDetail() {
           </button>
         </p>
       </div>
-      <CategoriesBar style={{width:'20%'}}></CategoriesBar>
+      <CategoriesBar style={{ width: '20%' }}></CategoriesBar>
     </div>
   );
 } export default MostPopularDetail;

@@ -12,6 +12,8 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import { Snackbar, Alert } from '@mui/material';
 import { jwtDecode } from 'jwt-decode';
 import { CircularProgress } from '@mui/material';
+import axios from 'axios';
+
 
 function AdminAccountSettings() {
   const [admins, setAdmins] = useState([]);
@@ -48,7 +50,6 @@ function AdminAccountSettings() {
   };
 
   const fetchUsers = async () => {
-
     const token = localStorage.getItem("jwt");
 
     if (!token) {
@@ -60,26 +61,38 @@ function AdminAccountSettings() {
       setHeaderName(decoded.name);
       setAdminNewMail(decoded.email);
     }
-
     try {
-      const response = await fetch('http://localhost:3000/adminpanel/admins', {
-        method: 'GET',
+      const response = await axios.get('http://localhost:3000/adminpanel/admins', {
         headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
+          Authorization: `Bearer ${token}`
+        }
       });
-      if (!response.ok) {
-        throw new Error("Kullanıcıları çekerken hata oluştu!");
-      }
 
-      const data = await response.json();
-      setAdmins(data); // Gelen veriyi state'e kaydet
+      // Axios otomatik olarak JSON parse işlemini yapar
+      // response.data içinde API yanıtı bulunur
+
+      if (response.data && response.data.succes && Array.isArray(response.data.data)) {
+        setAdmins(response.data.data); // data dizisini kaydet
+      } else {
+        console.error("Hatalı formatta veri geldi:", response.data);
+        setAdmins([]);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      if (error.response) {
+        // Sunucu yanıt verdi ama 2xx aralığında olmayan bir durum koduyla
+        console.error('Response data:', error.response.data);
+        console.error('Response status:', error.response.status);
+      } else if (error.request) {
+        // İstek yapıldı ama yanıt alınamadı
+        console.error('No response received:', error.request);
+      } else {
+        // İstek oluşturulurken bir hata oluştu
+        console.error('Error message:', error.message);
+      }
+      setAdmins([]);
     }
-    catch (error) {
-      console.error('Error: ', error);
-    }
-  }
+  };
 
   const updateButton = async () => {
     setLoading(true);
@@ -119,7 +132,6 @@ function AdminAccountSettings() {
   useEffect(() => {
     fetchUsers();
   }, []);
-
 
   return (
     <Fade in={true} timeout={500}>
@@ -183,8 +195,7 @@ function AdminAccountSettings() {
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
+              id="panel2a-header">
               <Typography><h3>Admin List</h3></Typography>
             </AccordionSummary>
             <AccordionDetails>

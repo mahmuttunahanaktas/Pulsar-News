@@ -4,7 +4,7 @@ import { FaLinkedin } from "react-icons/fa";
 
 function Footer() {
     return (
-        <footer className="d-flex flex-column text-white p-3" style={{background:'blackg'}}>
+        <footer className="d-flex text-white flex-column p-3 bg-black">
             <div className="container d-block">
                 <div className="text-center mt-3">
                     <button className='footerIconButton'> <FaGithub onClick={(e) => window.location.href = "https://github.com/Fastbackk"} className='g_icon fs-1' /></button>
